@@ -36,7 +36,7 @@ public class Produit implements Serializable {
 	private byte[] photo;
 
 	@ManyToOne
-	@JoinColumn(name = "categorie_id", referencedColumnName = "id_cl")
+	@JoinColumn(name = "categorie_id", referencedColumnName = "id_ca")
 	private Categorie categorie;
 
 	// Contructeur vide

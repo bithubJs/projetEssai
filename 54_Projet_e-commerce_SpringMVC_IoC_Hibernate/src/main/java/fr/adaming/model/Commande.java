@@ -11,21 +11,26 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
-@Table(name="commandes")
+@Table(name = "commandes")
 public class Commande {
-	
-	
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="id_co")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_co")
 	private int idCommande;
-	
+
+	@Temporal(TemporalType.DATE)
 	private Calendar dateCommande;
-	
-	@OneToMany(mappedBy="commande", cascade=CascadeType.REMOVE)
+
+	@OneToMany(mappedBy = "commande", cascade = CascadeType.REMOVE)
 	private List<LigneCommande> listeLignesCommande;
+
+	@OneToMany(mappedBy = "commande", cascade = CascadeType.REMOVE)
+	private List<Client> listeClients;
 
 	/**
 	 * 
@@ -60,7 +65,8 @@ public class Commande {
 	}
 
 	/**
-	 * @param idCommande the idCommande to set
+	 * @param idCommande
+	 *            the idCommande to set
 	 */
 	public void setIdCommande(int idCommande) {
 		this.idCommande = idCommande;
@@ -74,7 +80,8 @@ public class Commande {
 	}
 
 	/**
-	 * @param dateCommande the dateCommande to set
+	 * @param dateCommande
+	 *            the dateCommande to set
 	 */
 	public void setDateCommande(Calendar dateCommande) {
 		this.dateCommande = dateCommande;
@@ -88,21 +95,21 @@ public class Commande {
 	}
 
 	/**
-	 * @param listeLignesCommande the listeLignesCommande to set
+	 * @param listeLignesCommande
+	 *            the listeLignesCommande to set
 	 */
 	public void setListeLignesCommande(List<LigneCommande> listeLignesCommande) {
 		this.listeLignesCommande = listeLignesCommande;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
 	public String toString() {
 		return "Commande [idCommande=" + idCommande + ", dateCommande=" + dateCommande + "]";
 	}
-	
-	
-	
 
 }
