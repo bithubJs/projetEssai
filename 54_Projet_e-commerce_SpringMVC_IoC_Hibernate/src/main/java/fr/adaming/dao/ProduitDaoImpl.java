@@ -31,15 +31,6 @@ public class ProduitDaoImpl implements IProduitDao {
 	// Methodes pour gestion des produits //
 	// ---------------------------------- //
 	
-	
-	@Override
-	public void addProduit(Produit p) {
-
-		s = sf.getCurrentSession();
-		s.save(p);
-		
-	}
-
 	@Override
 	public List<Produit> getAllProduits() {
 
@@ -49,35 +40,45 @@ public class ProduitDaoImpl implements IProduitDao {
 		
 		return query.list();
 	}
-
-	@Override
-	public Produit getProduitById(int id) {
-
-		
-		s = sf.getCurrentSession();
-		
-		Produit p_rec = (Produit) s.get(Produit.class, id);
-		
-		return p_rec;
-	}
-
-	@Override
-	public void updateProduit(Produit p) {
-
-		s = sf.getCurrentSession();
-		s.update(p);
-		
-	}
-
-	@Override
-	public void deleteProduit(Produit p) {
-
-		s = sf.getCurrentSession();
-		String req_delete = "DELETE FROM Produit p WHERE p.idProduit=:pId";
-		Query query = s.createQuery(req_delete);
-		query.setParameter("pId", p.getIdProduit());
-		query.executeUpdate();
-		
-	}
+	
+	
+//	@Override
+//	public void addProduit(Produit p) {
+//
+//		s = sf.getCurrentSession();
+//		s.save(p);
+//		
+//	}
+//
+//
+//	@Override
+//	public Produit getProduitById(int id) {
+//
+//		
+//		s = sf.getCurrentSession();
+//		
+//		Produit p_rec = (Produit) s.get(Produit.class, id);
+//		
+//		return p_rec;
+//	}
+//
+//	@Override
+//	public void updateProduit(Produit p) {
+//
+//		s = sf.getCurrentSession();
+//		s.update(p);
+//		
+//	}
+//
+//	@Override
+//	public void deleteProduit(Produit p) {
+//
+//		s = sf.getCurrentSession();
+//		String req_delete = "DELETE FROM Produit p WHERE p.idProduit=:pId";
+//		Query query = s.createQuery(req_delete);
+//		query.setParameter("pId", p.getIdProduit());
+//		query.executeUpdate();
+//		
+//	}
 
 }

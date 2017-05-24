@@ -32,14 +32,6 @@ public class ClientDaoImpl implements IClientDao {
 	// --------------------------------------------------------------- //
 
 	@Override
-	public void addClient(Client c) {
-
-		s = sf.getCurrentSession();
-		s.save(c);
-		
-	}
-
-	@Override
 	public List<Client> getAllClients() {
 
 		s = sf.getCurrentSession();
@@ -48,35 +40,44 @@ public class ClientDaoImpl implements IClientDao {
 		
 		return query.list();
 	}
-
-	@Override
-	public Client getClientById(int id) {
-
-		s = sf.getCurrentSession();
-		
-		Client c_rec = (Client) s.get(Client.class, id);
-		
-		return c_rec;
-	}
-
-	@Override
-	public void updateClient(Client c) {
-
-		s = sf.getCurrentSession();
-		s.update(c);
-		
-	}
-
-	@Override
-	public void deleteClient(Client c) {
-
-		s = sf.getCurrentSession();
-		String req_delete = "DELETE FROM Client c WHERE c.idClient=:pId";
-		Query query = s.createQuery(req_delete);
-		query.setParameter("pId", c.getIdClient());
-		query.executeUpdate();
-		
-	}
+	
+	
+//	@Override
+//	public void addClient(Client c) {
+//
+//		s = sf.getCurrentSession();
+//		s.save(c);
+//		
+//	}
+//
+//	@Override
+//	public Client getClientById(int id) {
+//
+//		s = sf.getCurrentSession();
+//		
+//		Client c_rec = (Client) s.get(Client.class, id);
+//		
+//		return c_rec;
+//	}
+//
+//	@Override
+//	public void updateClient(Client c) {
+//
+//		s = sf.getCurrentSession();
+//		s.update(c);
+//		
+//	}
+//
+//	@Override
+//	public void deleteClient(Client c) {
+//
+//		s = sf.getCurrentSession();
+//		String req_delete = "DELETE FROM Client c WHERE c.idClient=:pId";
+//		Query query = s.createQuery(req_delete);
+//		query.setParameter("pId", c.getIdClient());
+//		query.executeUpdate();
+//		
+//	}
 	
 
 }
