@@ -1,5 +1,7 @@
 package fr.adaming.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,20 +10,24 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="clients")
-public class Client {
-	
+@Table(name = "clients")
+public class Client implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="id_cl")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_cl")
 	private int idClient;
-	
+
 	private String nomClient;
 	private String adresse;
 	private String email;
 	private String tel;
-	
-	
+
 	// Contructeur vide
 	/**
 	 * 
@@ -62,7 +68,6 @@ public class Client {
 		this.tel = tel;
 	}
 
-	
 	// Getters & Setters
 	/**
 	 * @return the idClient
@@ -71,14 +76,13 @@ public class Client {
 		return idClient;
 	}
 
-
 	/**
-	 * @param idClient the idClient to set
+	 * @param idClient
+	 *            the idClient to set
 	 */
 	public void setIdClient(int idClient) {
 		this.idClient = idClient;
 	}
-
 
 	/**
 	 * @return the nomClient
@@ -87,14 +91,13 @@ public class Client {
 		return nomClient;
 	}
 
-
 	/**
-	 * @param nomClient the nomClient to set
+	 * @param nomClient
+	 *            the nomClient to set
 	 */
 	public void setNomClient(String nomClient) {
 		this.nomClient = nomClient;
 	}
-
 
 	/**
 	 * @return the adresse
@@ -103,14 +106,13 @@ public class Client {
 		return adresse;
 	}
 
-
 	/**
-	 * @param adresse the adresse to set
+	 * @param adresse
+	 *            the adresse to set
 	 */
 	public void setAdresse(String adresse) {
 		this.adresse = adresse;
 	}
-
 
 	/**
 	 * @return the email
@@ -119,14 +121,13 @@ public class Client {
 		return email;
 	}
 
-
 	/**
-	 * @param email the email to set
+	 * @param email
+	 *            the email to set
 	 */
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
 
 	/**
 	 * @return the tel
@@ -135,16 +136,17 @@ public class Client {
 		return tel;
 	}
 
-
 	/**
-	 * @param tel the tel to set
+	 * @param tel
+	 *            the tel to set
 	 */
 	public void setTel(String tel) {
 		this.tel = tel;
 	}
 
-
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
@@ -152,11 +154,5 @@ public class Client {
 		return "Client [idClient=" + idClient + ", nomClient=" + nomClient + ", adresse=" + adresse + ", email=" + email
 				+ ", tel=" + tel + "]";
 	}
-	
-	
-	
-	
-	
-	
 
 }

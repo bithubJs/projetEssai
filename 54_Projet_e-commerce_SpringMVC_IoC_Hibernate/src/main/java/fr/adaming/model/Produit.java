@@ -1,36 +1,44 @@
 package fr.adaming.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="produits")
-public class Produit {
-	
+@Table(name = "produits")
+public class Produit implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="id_p")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_p")
 	private int idProduit;
-	
+
 	private String designation;
 	private String description;
 	private double prix;
 	private int quantite;
 	private boolean selectionne;
-	private String photo;
-	
-//	@ManyToOne
-//	@JoinColumn(name="categorie_id", referencedColumnName="id_cl")
-//	private Categorie categorie;
-	
-	
-	
+
+	@Lob
+	private byte[] photo;
+
+	@ManyToOne
+	@JoinColumn(name = "categorie_id", referencedColumnName = "id_cl")
+	private Categorie categorie;
+
 	// Contructeur vide
 	/**
 	 * 
@@ -38,7 +46,6 @@ public class Produit {
 	public Produit() {
 		super();
 	}
-
 
 	// sans id
 	/**
@@ -59,7 +66,6 @@ public class Produit {
 		this.selectionne = selectionne;
 		this.photo = photo;
 	}
-
 
 	// avec id
 	/**
@@ -83,7 +89,6 @@ public class Produit {
 		this.photo = photo;
 	}
 
-
 	// Getters & Setters
 	/**
 	 * @return the idProduit
@@ -92,16 +97,13 @@ public class Produit {
 		return idProduit;
 	}
 
-
-
 	/**
-	 * @param idProduit the idProduit to set
+	 * @param idProduit
+	 *            the idProduit to set
 	 */
 	public void setIdProduit(int idProduit) {
 		this.idProduit = idProduit;
 	}
-
-
 
 	/**
 	 * @return the designation
@@ -110,16 +112,13 @@ public class Produit {
 		return designation;
 	}
 
-
-
 	/**
-	 * @param designation the designation to set
+	 * @param designation
+	 *            the designation to set
 	 */
 	public void setDesignation(String designation) {
 		this.designation = designation;
 	}
-
-
 
 	/**
 	 * @return the description
@@ -128,16 +127,13 @@ public class Produit {
 		return description;
 	}
 
-
-
 	/**
-	 * @param description the description to set
+	 * @param description
+	 *            the description to set
 	 */
 	public void setDescription(String description) {
 		this.description = description;
 	}
-
-
 
 	/**
 	 * @return the prix
@@ -146,16 +142,13 @@ public class Produit {
 		return prix;
 	}
 
-
-
 	/**
-	 * @param prix the prix to set
+	 * @param prix
+	 *            the prix to set
 	 */
 	public void setPrix(double prix) {
 		this.prix = prix;
 	}
-
-
 
 	/**
 	 * @return the quantite
@@ -164,16 +157,13 @@ public class Produit {
 		return quantite;
 	}
 
-
-
 	/**
-	 * @param quantite the quantite to set
+	 * @param quantite
+	 *            the quantite to set
 	 */
 	public void setQuantite(int quantite) {
 		this.quantite = quantite;
 	}
-
-
 
 	/**
 	 * @return the selectionne
@@ -182,16 +172,13 @@ public class Produit {
 		return selectionne;
 	}
 
-
-
 	/**
-	 * @param selectionne the selectionne to set
+	 * @param selectionne
+	 *            the selectionne to set
 	 */
 	public void setSelectionne(boolean selectionne) {
 		this.selectionne = selectionne;
 	}
-
-
 
 	/**
 	 * @return the photo
@@ -200,18 +187,17 @@ public class Produit {
 		return photo;
 	}
 
-
-
 	/**
-	 * @param photo the photo to set
+	 * @param photo
+	 *            the photo to set
 	 */
 	public void setPhoto(String photo) {
 		this.photo = photo;
 	}
 
-
-
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
@@ -220,10 +206,5 @@ public class Produit {
 				+ ", prix=" + prix + ", quantite=" + quantite + ", selectionne=" + selectionne + ", photo=" + photo
 				+ "]";
 	}
-	
-	
-	
-	
-	
 
 }

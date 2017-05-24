@@ -1,5 +1,6 @@
 package fr.adaming.model;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -13,7 +14,12 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "users")
-public class User {
+public class User implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,7 +31,7 @@ public class User {
 	private boolean actived;
 
 	@OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
-	private List<Role> roleList;
+	private List<Role> listeRoles;
 
 	/**
 	 * 
@@ -121,18 +127,18 @@ public class User {
 	}
 
 	/**
-	 * @return the roleList
+	 * @return the listeRoles
 	 */
-	public List<Role> getRoleList() {
-		return roleList;
+	public List<Role> getListeRoles() {
+		return listeRoles;
 	}
 
 	/**
-	 * @param roleList
-	 *            the roleList to set
+	 * @param listeRoles
+	 *            the listeRoles to set
 	 */
-	public void setRoleList(List<Role> roleList) {
-		this.roleList = roleList;
+	public void setListeRoles(List<Role> listeRoles) {
+		this.listeRoles = listeRoles;
 	}
 
 	/*

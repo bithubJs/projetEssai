@@ -15,7 +15,7 @@ public class ClientServiceImpl implements IClientService {
 
 	@Autowired
 	private IClientDao cDao;
-	
+
 	@Override
 	public void addClient(Client c) {
 
