@@ -1,10 +1,148 @@
 package fr.adaming.model;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "users")
 public class User {
-	
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_u")
 	private int id;
-	
-	
-	
+
+	private String username;
+	private String password;
+	private boolean actived;
+
+	@OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
+	private List<Role> roleList;
+
+	/**
+	 * 
+	 */
+	public User() {
+		super();
+	}
+
+	/**
+	 * @param username
+	 * @param password
+	 * @param actived
+	 */
+	public User(String username, String password, boolean actived) {
+		super();
+		this.username = username;
+		this.password = password;
+		this.actived = actived;
+	}
+
+	/**
+	 * @param id
+	 * @param username
+	 * @param password
+	 * @param actived
+	 */
+	public User(int id, String username, String password, boolean actived) {
+		super();
+		this.id = id;
+		this.username = username;
+		this.password = password;
+		this.actived = actived;
+	}
+
+	/**
+	 * @return the id
+	 */
+	public int getId() {
+		return id;
+	}
+
+	/**
+	 * @param id
+	 *            the id to set
+	 */
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	/**
+	 * @return the username
+	 */
+	public String getUsername() {
+		return username;
+	}
+
+	/**
+	 * @param username
+	 *            the username to set
+	 */
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	/**
+	 * @return the password
+	 */
+	public String getPassword() {
+		return password;
+	}
+
+	/**
+	 * @param password
+	 *            the password to set
+	 */
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	/**
+	 * @return the actived
+	 */
+	public boolean isActived() {
+		return actived;
+	}
+
+	/**
+	 * @param actived
+	 *            the actived to set
+	 */
+	public void setActived(boolean actived) {
+		this.actived = actived;
+	}
+
+	/**
+	 * @return the roleList
+	 */
+	public List<Role> getRoleList() {
+		return roleList;
+	}
+
+	/**
+	 * @param roleList
+	 *            the roleList to set
+	 */
+	public void setRoleList(List<Role> roleList) {
+		this.roleList = roleList;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", username=" + username + ", password=" + password + ", actived=" + actived + "]";
+	}
 
 }
