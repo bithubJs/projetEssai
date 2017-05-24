@@ -14,10 +14,10 @@
 	<context:property-placeholder location="classpath*:dataSource.properties"/>
 	
 	<bean id="dataSourceBean" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-		<property name="driverClassName" value="${toto.driver}" />
-		<property name="url" value="${toto.url}" />
-		<property name="username" value="${toto.user}" />
-		<property name="password" value="${toto.mdp}" />
+		<property name="driverClassName" value="${ecommerce.driver}" />
+		<property name="url" value="${ecommerce.url}" />
+		<property name="username" value="${ecommerce.user}" />
+		<property name="password" value="${ecommerce.mdp}" />
 	</bean>
 
 	<bean id="sessionFactoryBean" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
@@ -25,9 +25,9 @@
 		<property name="packagesToScan" value="fr.adaming.model" />
 		<property name="hibernateProperties">
 			<props>
-				<prop key="hibernate.dialect">${toto.dialect}</prop>
-				<prop key="hibernate.show_sql">${toto.sql}</prop>
-				<prop key="hibernate.hbm2ddl.auto">${toto.hbm}</prop>
+				<prop key="hibernate.dialect">${ecommerce.dialect}</prop>
+				<prop key="hibernate.show_sql">${ecommerce.sql}</prop>
+				<prop key="hibernate.hbm2ddl.auto">${ecommerce.hbm}</prop>
 			</props>
 		</property>
 	</bean>
