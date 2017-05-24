@@ -13,7 +13,7 @@ public class Client {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="id_c")
+	@Column(name="id_cl")
 	private int idClient;
 	
 	private String nomClient;
@@ -22,6 +22,7 @@ public class Client {
 	private String tel;
 	
 	
+	// Contructeur vide
 	/**
 	 * 
 	 */
@@ -29,7 +30,7 @@ public class Client {
 		super();
 	}
 
-
+	// sans id
 	/**
 	 * @param nomClient
 	 * @param adresse
@@ -44,7 +45,7 @@ public class Client {
 		this.tel = tel;
 	}
 
-
+	// avec id
 	/**
 	 * @param idClient
 	 * @param nomClient
@@ -61,7 +62,8 @@ public class Client {
 		this.tel = tel;
 	}
 
-
+	
+	// Getters & Setters
 	/**
 	 * @return the idClient
 	 */

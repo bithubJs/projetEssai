@@ -9,15 +9,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import fr.adaming.model.Client;
+import fr.adaming.model.Produit;
 
 @Repository
-public class ClientDaoImpl implements IClientDao {
-	
+public class ProduitDaoImpl implements IProduitDao {
+
 	@Autowired
 	private SessionFactory sf;
 	private Session s;
-
-
+	
+	
 	/**
 	 * @param sf the sf to set
 	 */
@@ -26,57 +27,57 @@ public class ClientDaoImpl implements IClientDao {
 	}
 
 	
+	// ---------------------------------- //
+	// Methodes pour gestion des produits //
+	// ---------------------------------- //
 	
-	// --------------------------------------------------------------- //
-	// Methodes pour gestion (enregistrement) du client après commande //
-	// --------------------------------------------------------------- //
-
+	
 	@Override
-	public void addClient(Client c) {
+	public void addProduit(Produit p) {
 
 		s = sf.getCurrentSession();
-		s.save(c);
+		s.save(p);
 		
 	}
 
 	@Override
-	public List<Client> getAllClients() {
+	public List<Produit> getAllProduits() {
 
 		s = sf.getCurrentSession();
-		String req_GetAllClients = "FROM Client";
-		Query query = s.createQuery(req_GetAllClients);
+		String req_GetAllProduits = "FROM Produit";
+		Query query = s.createQuery(req_GetAllProduits);
 		
 		return query.list();
 	}
 
 	@Override
-	public Client getClientById(int id) {
+	public Produit getProduitById(int id) {
 
+		
 		s = sf.getCurrentSession();
 		
-		Client c_rec = (Client) s.get(Client.class, id);
+		Produit p_rec = (Produit) s.get(Produit.class, id);
 		
-		return c_rec;
+		return p_rec;
 	}
 
 	@Override
-	public void updateClient(Client c) {
+	public void updateProduit(Produit p) {
 
 		s = sf.getCurrentSession();
-		s.update(c);
+		s.update(p);
 		
 	}
 
 	@Override
-	public void deleteClient(Client c) {
+	public void deleteProduit(Produit p) {
 
 		s = sf.getCurrentSession();
-		String req_delete = "DELETE FROM Client c WHERE c.idClient=:pId";
+		String req_delete = "DELETE FROM Produit p WHERE p.idProduit=:pId";
 		Query query = s.createQuery(req_delete);
-		query.setParameter("pId", c.getIdClient());
+		query.setParameter("pId", p.getIdProduit());
 		query.executeUpdate();
 		
 	}
-	
 
 }
