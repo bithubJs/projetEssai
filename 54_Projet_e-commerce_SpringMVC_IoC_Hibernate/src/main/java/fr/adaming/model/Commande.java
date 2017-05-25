@@ -9,6 +9,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -21,7 +23,7 @@ public class Commande {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_co")
-	private int idCommande;
+	private Long idCommande;
 
 	@Temporal(TemporalType.DATE)
 	private Calendar dateCommande;
@@ -29,8 +31,12 @@ public class Commande {
 	@OneToMany(mappedBy = "commande", cascade = CascadeType.REMOVE)
 	private List<LigneCommande> listeLignesCommande;
 
-	@OneToMany(mappedBy = "commande", cascade = CascadeType.REMOVE)
-	private List<Client> listeClients;
+//	@OneToMany(mappedBy = "commande", cascade = CascadeType.REMOVE)
+//	private List<Client> listeClients;
+	
+	@ManyToOne
+	@JoinColumn(name="client_id", referencedColumnName="id_cl")
+	private Client client;
 
 	/**
 	 * 
@@ -51,7 +57,7 @@ public class Commande {
 	 * @param idCommande
 	 * @param dateCommande
 	 */
-	public Commande(int idCommande, Calendar dateCommande) {
+	public Commande(Long idCommande, Calendar dateCommande) {
 		super();
 		this.idCommande = idCommande;
 		this.dateCommande = dateCommande;
@@ -60,7 +66,7 @@ public class Commande {
 	/**
 	 * @return the idCommande
 	 */
-	public int getIdCommande() {
+	public Long getIdCommande() {
 		return idCommande;
 	}
 
@@ -68,7 +74,7 @@ public class Commande {
 	 * @param idCommande
 	 *            the idCommande to set
 	 */
-	public void setIdCommande(int idCommande) {
+	public void setIdCommande(Long idCommande) {
 		this.idCommande = idCommande;
 	}
 

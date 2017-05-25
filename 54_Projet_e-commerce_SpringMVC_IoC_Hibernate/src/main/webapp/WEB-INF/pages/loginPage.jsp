@@ -10,15 +10,30 @@
 </head>
 <body>
 
-	<form action="j_spring_security_check" method="post">
-		Login <input type="text" name="j_username" /> <br /> Password <input
-			type="text" name="j_password" /> <br /> <input type="submit"
-			value="Connection">
-	</form>
+	<div>
 
-	<c:if test="${not empty erreur}">
-		<h1 style="color: red">Login ou password est incorrecte</h1>
-	</c:if>
+		<form action="j_spring_security_check" method="post">
+			<table>
+				<tr>
+					<td>Login</td>
+					<td><input type="text" name="j_username" /></td>
+				</tr>
+				<tr>
+					<td>Password</td>
+					<td><input type="password" name="j_password" /></td>
+				</tr>
+				<tr>
+					<td><input type="submit" value="Connexion"></td>
+				</tr>
+			</table>
+		</form>
+
+		<c:if test="${not empty erreur}">
+			<h1 style="color: red">Login ou password est incorrect</h1>
+		</c:if>
+
+	</div>
+
 
 </body>
 </html>

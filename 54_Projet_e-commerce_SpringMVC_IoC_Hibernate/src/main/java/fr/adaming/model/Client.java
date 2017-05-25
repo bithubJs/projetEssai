@@ -1,6 +1,7 @@
 package fr.adaming.model;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -23,16 +25,20 @@ public class Client implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_cl")
-	private int idClient;
+	private Long idClient;
 
 	private String nomClient;
 	private String adresse;
 	private String email;
 	private String tel;
 
-	@ManyToOne
-	@JoinColumn(name = "commande_id", referencedColumnName = "id_co")
-	private Commande commande;
+//	@ManyToOne
+//	@JoinColumn(name = "commande_id", referencedColumnName = "id_co")
+//	private Commande commande;
+	// get & set ?
+	
+	@OneToMany(mappedBy="client")
+	private List<Commande> listeCommandes;
 
 	// Contructeur vide
 	/**
@@ -65,7 +71,7 @@ public class Client implements Serializable {
 	 * @param email
 	 * @param tel
 	 */
-	public Client(int idClient, String nomClient, String adresse, String email, String tel) {
+	public Client(Long idClient, String nomClient, String adresse, String email, String tel) {
 		super();
 		this.idClient = idClient;
 		this.nomClient = nomClient;
@@ -78,7 +84,7 @@ public class Client implements Serializable {
 	/**
 	 * @return the idClient
 	 */
-	public int getIdClient() {
+	public Long getIdClient() {
 		return idClient;
 	}
 
@@ -86,7 +92,7 @@ public class Client implements Serializable {
 	 * @param idClient
 	 *            the idClient to set
 	 */
-	public void setIdClient(int idClient) {
+	public void setIdClient(Long idClient) {
 		this.idClient = idClient;
 	}
 

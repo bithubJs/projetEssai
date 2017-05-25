@@ -25,7 +25,7 @@ public class Categorie implements Serializable {
 	@Id
 	@GeneratedValue
 	@Column(name = "id_ca")
-	private int idCategorie;
+	private Long idCategorie;
 
 	private String nomCategorie;
 
@@ -62,7 +62,7 @@ public class Categorie implements Serializable {
 	 * @param photo
 	 * @param description
 	 */
-	public Categorie(int idCategorie, String nomCategorie, byte[] photo, String description) {
+	public Categorie(Long idCategorie, String nomCategorie, byte[] photo, String description) {
 		super();
 		this.idCategorie = idCategorie;
 		this.nomCategorie = nomCategorie;
@@ -73,7 +73,7 @@ public class Categorie implements Serializable {
 	/**
 	 * @return the idCategorie
 	 */
-	public int getIdCategorie() {
+	public Long getIdCategorie() {
 		return idCategorie;
 	}
 
@@ -81,7 +81,7 @@ public class Categorie implements Serializable {
 	 * @param idCategorie
 	 *            the idCategorie to set
 	 */
-	public void setIdCategorie(int idCategorie) {
+	public void setIdCategorie(Long idCategorie) {
 		this.idCategorie = idCategorie;
 	}
 
