@@ -8,7 +8,7 @@
 </head>
 <body>
 
-
+<%response.sendRedirect("sith-e-commerce/accueil"); %>
 
 
 </body>

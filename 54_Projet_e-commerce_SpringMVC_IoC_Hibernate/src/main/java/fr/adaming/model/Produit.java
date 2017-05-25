@@ -32,8 +32,7 @@ public class Produit implements Serializable {
 	private int quantite;
 	private boolean selectionne;
 
-	@Lob
-	private byte[] photo;
+	private String photo;
 
 	@ManyToOne
 	@JoinColumn(name = "categorie_id", referencedColumnName = "id_ca")

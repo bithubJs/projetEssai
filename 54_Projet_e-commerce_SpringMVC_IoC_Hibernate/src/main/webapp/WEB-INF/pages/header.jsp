@@ -4,15 +4,18 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Sith-e commerce - Accueil</title>
+<title>Insert title here</title>
 </head>
 <body>
-<%@ include file="header.jsp"%>
 
 
-<h1>Je suis dans accueil</h1>
+<div style="background-color: aqua; height: 50px">
 
-<%@ include file="footer.jsp"%>
+HEADER
+
+</div>
+
+
 
 </body>
 </html>
