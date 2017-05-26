@@ -11,6 +11,15 @@
 	<context:component-scan base-package="fr.adaming.controllers" />
 
 	<mvc:default-servlet-handler />
+	
+	
+	
+	
+<!-- 	<mvc:resources mapping="/resources/**" location="/WEB-INF/images/" /> -->
+	<mvc:resources mapping="/images/**" location="WEB-INF/resources/images/" />
+	
+	
+	
 
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
