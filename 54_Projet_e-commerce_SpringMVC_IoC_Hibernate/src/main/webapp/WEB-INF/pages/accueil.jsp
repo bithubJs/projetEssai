@@ -1,18 +1,58 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+	pageEncoding="ISO-8859-1"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
+<!DOCTYPE html>
+
 <html>
+
 <head>
+
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+
+<script type="text/javascript" src="JS/jquery-3.2.1.js"></script>
+<script type="text/javascript" src="JS/bootstrap.js"></script>
+<link rel="stylesheet" type="text/css" href="CSS/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="CSS/bootstrap-theme.css">
+
+
 <title>Sith-e commerce - Accueil</title>
+
 </head>
+
 <body>
-<%@ include file="header.jsp"%>
+	<%@ include file="header.jsp"%>
 
+	<h1 style="color: red; text-align: center">${msg1}</h1>
+	<h1 style="color: red; text-align: center">${msg2}</h1>
+	<h1 style="color: red; text-align: center">${msg3}</h1>
+	<br />
 
-<h1>Je suis dans accueil</h1>
+	<div align="center">
+		<table width="100%" cellpadding="6">
+			<tr style="background-color: grey; color: white; text-align: center;">
+				<th>ID</th>
+				<th>Nom des catégories</th>
+				<th>Photo des catégories</th>
+				<th>Descritpion des catégories</th>
+			</tr>
+			<c:forEach var="accueil" items="${categoriesListe}">
+				<tr>
+					<td>${categorie.idCategorie}</td>
+					<td>${categorie.nomCategorie}</td>
+					<td>${categorie.photo}</td>
+					<td>${categorie.description}</td>
+					<td><a
+						href="${pageContext.request.contextPath}/accueil/deleteCategorie/${categorie.idCategorie}">Supprimer</a>
+						| <a
+						href="${pageContext.request.contextPath}/accueil/updateCategorie?idCategorie=${categorie.idCategorie}">Modifier</a></td>
+					<!-- point d'int pour dire parametre de la requete url -->
+					<!-- pour faire la différence entre le slash et le point d'id, pour le slah c'est une ressource on va utiliser atPathVariable pour le point d'int c'est un param donc atRequestParam-->
+				</tr>
+			</c:forEach>
+		</table>
 
-<%@ include file="footer.jsp"%>
-
+		<%@ include file="footer.jsp"%>
 </body>
 </html>
+
