@@ -10,6 +10,12 @@
 
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 
+<script type="text/javascript" src="JS/jquery-3.2.1.js"></script>
+<script type="text/javascript" src="JS/bootstrap.js"></script>
+<link rel="stylesheet" type="text/css" href="CSS/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="CSS/bootstrap-theme.css">
+
+
 <title>Sith-e commerce - Accueil</title>
 
 </head>
@@ -35,7 +41,7 @@
 					<td>${categorie.idCategorie}</td>
 					<td>${categorie.nomCategorie}</td>
 					<td>${categorie.photo}</td>
-					<td>${categorie.descritpion}</td>
+					<td>${categorie.description}</td>
 					<td><a
 						href="${pageContext.request.contextPath}/accueil/deleteCategorie/${categorie.idCategorie}">Supprimer</a>
 						| <a
