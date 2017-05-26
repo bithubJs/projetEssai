@@ -29,9 +29,9 @@ public class CategorieServiceImpl implements ICategorieService {
 	}
 
 	@Override
-	public Categorie getCategorieById(int id) {
+	public Categorie getCategorieById(Long catId) {
 
-		return categorieDao.getCategorieById(id);
+		return categorieDao.getCategorieById(catId);
 	}
 
 	@Override

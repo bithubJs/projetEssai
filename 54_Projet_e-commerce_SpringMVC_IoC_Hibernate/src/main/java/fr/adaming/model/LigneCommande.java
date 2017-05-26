@@ -19,7 +19,7 @@ public class LigneCommande {
 	private int id;
 
 	private int quantite;
-	private int prix;
+	private double prix;
 
 	@ManyToOne
 	@JoinColumn(name = "produit_id", referencedColumnName = "id_p")
@@ -40,7 +40,7 @@ public class LigneCommande {
 	 * @param quantite
 	 * @param prix
 	 */
-	public LigneCommande(int quantite, int prix) {
+	public LigneCommande(int quantite, double prix) {
 		super();
 		this.quantite = quantite;
 		this.prix = prix;
@@ -51,7 +51,7 @@ public class LigneCommande {
 	 * @param quantite
 	 * @param prix
 	 */
-	public LigneCommande(int id, int quantite, int prix) {
+	public LigneCommande(int id, int quantite, double prix) {
 		super();
 		this.id = id;
 		this.quantite = quantite;
@@ -91,7 +91,7 @@ public class LigneCommande {
 	/**
 	 * @return the prix
 	 */
-	public int getPrix() {
+	public double getPrix() {
 		return prix;
 	}
 
@@ -99,7 +99,7 @@ public class LigneCommande {
 	 * @param prix
 	 *            the prix to set
 	 */
-	public void setPrix(int prix) {
+	public void setPrix(double prix) {
 		this.prix = prix;
 	}
 

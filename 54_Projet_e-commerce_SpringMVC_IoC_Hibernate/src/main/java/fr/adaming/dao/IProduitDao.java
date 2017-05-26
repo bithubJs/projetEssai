@@ -22,6 +22,4 @@ public interface IProduitDao {
 
 	public void deleteProduit(Produit p);
 
-	// public Commande saveCommande(Panier panier, Client c);
-
 }

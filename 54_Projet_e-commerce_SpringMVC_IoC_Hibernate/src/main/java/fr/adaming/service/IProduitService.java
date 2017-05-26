@@ -21,6 +21,4 @@ public interface IProduitService {
 	public void updateProduit(Produit p);
 
 	public void deleteProduit(Produit p);
-
-	// public Commande saveCommande(Panier panier, Client c);
 }

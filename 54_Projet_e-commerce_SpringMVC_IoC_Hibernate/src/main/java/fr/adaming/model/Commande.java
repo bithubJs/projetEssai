@@ -1,7 +1,9 @@
 package fr.adaming.model;
 
 import java.util.Calendar;
+import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -30,9 +32,9 @@ public class Commande {
 
 	@OneToMany(mappedBy = "commande", cascade = CascadeType.REMOVE)
 	private List<LigneCommande> listeLignesCommande;
-	
+
 	@ManyToOne
-	@JoinColumn(name="client_id", referencedColumnName="id_cl")
+	@JoinColumn(name = "client_id", referencedColumnName = "id_cl")
 	private Client client;
 
 	/**
@@ -103,6 +105,21 @@ public class Commande {
 	 */
 	public void setListeLignesCommande(List<LigneCommande> listeLignesCommande) {
 		this.listeLignesCommande = listeLignesCommande;
+	}
+
+	/**
+	 * @return the client
+	 */
+	public Client getClient() {
+		return client;
+	}
+
+	/**
+	 * @param client
+	 *            the client to set
+	 */
+	public void setClient(Client client) {
+		this.client = client;
 	}
 
 	/*
