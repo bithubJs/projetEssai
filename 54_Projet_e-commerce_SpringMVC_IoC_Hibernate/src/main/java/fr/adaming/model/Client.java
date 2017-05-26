@@ -31,16 +31,10 @@ public class Client implements Serializable {
 	private String adresse;
 	private String email;
 	private String tel;
-
-//	@ManyToOne
-//	@JoinColumn(name = "commande_id", referencedColumnName = "id_co")
-//	private Commande commande;
-	// get & set ?
 	
 	@OneToMany(mappedBy="client")
 	private List<Commande> listeCommandes;
 
-	// Contructeur vide
 	/**
 	 * 
 	 */
@@ -48,7 +42,6 @@ public class Client implements Serializable {
 		super();
 	}
 
-	// sans id
 	/**
 	 * @param nomClient
 	 * @param adresse
@@ -63,7 +56,6 @@ public class Client implements Serializable {
 		this.tel = tel;
 	}
 
-	// avec id
 	/**
 	 * @param idClient
 	 * @param nomClient
@@ -80,7 +72,6 @@ public class Client implements Serializable {
 		this.tel = tel;
 	}
 
-	// Getters & Setters
 	/**
 	 * @return the idClient
 	 */

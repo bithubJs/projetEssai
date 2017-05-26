@@ -51,7 +51,7 @@ public class ClientDaoImpl implements IClientDao {
 //	}
 //
 //	@Override
-//	public Client getClientById(int id) {
+//	public Client getClientById(Long id) {
 //
 //		s = sf.getCurrentSession();
 //		

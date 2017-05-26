@@ -10,7 +10,7 @@ public interface ICategorieService {
 
 	public List<Categorie> getAllCategories();
 
-	public Categorie getCategorieById(int id);
+	public Categorie getCategorieById(Long catId);
 
 	public void updateCategorie(Categorie c);
 

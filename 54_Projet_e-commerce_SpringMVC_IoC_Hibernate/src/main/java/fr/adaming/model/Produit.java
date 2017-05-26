@@ -8,9 +8,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 @Table(name = "produits")
@@ -26,8 +28,10 @@ public class Produit implements Serializable {
 	@Column(name = "id_p")
 	private Long idProduit;
 
-	private String designation;
+	@NotEmpty
+	@Size(min = 1, max = 6)
 	private String description;
+	private String designation;
 	private double prix;
 	private int quantite;
 	private boolean selectionne;
@@ -38,7 +42,6 @@ public class Produit implements Serializable {
 	@JoinColumn(name = "categorie_id", referencedColumnName = "id_ca")
 	private Categorie categorie;
 
-	// Contructeur vide
 	/**
 	 * 
 	 */
@@ -46,7 +49,6 @@ public class Produit implements Serializable {
 		super();
 	}
 
-	// sans id
 	/**
 	 * @param designation
 	 * @param description
@@ -66,7 +68,6 @@ public class Produit implements Serializable {
 		this.photo = photo;
 	}
 
-	// avec id
 	/**
 	 * @param idProduit
 	 * @param designation
@@ -88,7 +89,6 @@ public class Produit implements Serializable {
 		this.photo = photo;
 	}
 
-	// Getters & Setters
 	/**
 	 * @return the idProduit
 	 */

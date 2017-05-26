@@ -80,7 +80,7 @@ public class SithECommerceController {
 	}
 
 	@RequestMapping(value = "/updateCategorie")
-	public ModelAndView formulaireUpdateCat(@RequestParam("idCategorie") int catId) {
+	public ModelAndView formulaireUpdateCat(@RequestParam("idCategorie") Long catId) {
 
 		Categorie cat_rec = categorieService.getCategorieById(catId);
 		String viewName = "formulaireAdd";
@@ -89,7 +89,7 @@ public class SithECommerceController {
 	}
 
 	@RequestMapping(value = "/deleteCategorie/{idCategorie}")
-	public String formulaireDeleteCat(ModelMap model, @PathVariable("idCategorie") int catId) {
+	public String formulaireDeleteCat(ModelMap model, @PathVariable("idCategorie") Long catId) {
 
 		Categorie cat_rec = categorieService.getCategorieById(catId);
 		categorieService.deleteCategorie(cat_rec);

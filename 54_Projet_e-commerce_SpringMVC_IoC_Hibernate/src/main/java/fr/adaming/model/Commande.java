@@ -30,9 +30,6 @@ public class Commande {
 
 	@OneToMany(mappedBy = "commande", cascade = CascadeType.REMOVE)
 	private List<LigneCommande> listeLignesCommande;
-
-//	@OneToMany(mappedBy = "commande", cascade = CascadeType.REMOVE)
-//	private List<Client> listeClients;
 	
 	@ManyToOne
 	@JoinColumn(name="client_id", referencedColumnName="id_cl")

@@ -41,14 +41,14 @@ public class CategorieDaoImpl implements ICategorieDao {
 	public List<Categorie> getAllCategories() {
 
 		s = sf.getCurrentSession();
-		String reqCategorie = "FROM Categorie";
+		String reqCategorie = "SELECT c FROM Categorie c";
 		Query query = s.createQuery(reqCategorie);
 
 		return query.list();
 	}
 
 	@Override
-	public Categorie getCategorieById(int id) {
+	public Categorie getCategorieById(Long id) {
 		s = sf.getCurrentSession();
 
 		Categorie c_rec = (Categorie) s.get(Categorie.class, id);
@@ -71,7 +71,7 @@ public class CategorieDaoImpl implements ICategorieDao {
 		Query query = s.createQuery(reqDelete);
 		query.setParameter("pIdc", c.getIdCategorie());
 		query.executeUpdate();
-		
+
 	}
 
 }

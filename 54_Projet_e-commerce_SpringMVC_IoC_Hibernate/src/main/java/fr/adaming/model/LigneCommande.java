@@ -1,8 +1,5 @@
 package fr.adaming.model;
 
-import java.util.List;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,24 +7,24 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="lignecommande")
+@Table(name = "lignecommande")
 public class LigneCommande {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="id_lc")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_lc")
 	private int id;
-	
+
 	private int quantite;
 	private int prix;
-	
-	@OneToMany
-	private List<Produit> listeProduits;
-	
+
+	@ManyToOne
+	@JoinColumn(name = "produit_id", referencedColumnName = "id_p")
+	private Produit produit;
+
 	@ManyToOne
 	@JoinColumn(name = "commande_id", referencedColumnName = "id_co")
 	private Commande commande;
@@ -42,27 +39,23 @@ public class LigneCommande {
 	/**
 	 * @param quantite
 	 * @param prix
-	 * @param listeProduits
 	 */
-	public LigneCommande(int quantite, int prix, List<Produit> listeProduits) {
+	public LigneCommande(int quantite, int prix) {
 		super();
 		this.quantite = quantite;
 		this.prix = prix;
-		this.listeProduits = listeProduits;
 	}
 
 	/**
 	 * @param id
 	 * @param quantite
 	 * @param prix
-	 * @param listeProduits
 	 */
-	public LigneCommande(int id, int quantite, int prix, List<Produit> listeProduits) {
+	public LigneCommande(int id, int quantite, int prix) {
 		super();
 		this.id = id;
 		this.quantite = quantite;
 		this.prix = prix;
-		this.listeProduits = listeProduits;
 	}
 
 	/**
@@ -73,7 +66,8 @@ public class LigneCommande {
 	}
 
 	/**
-	 * @param id the id to set
+	 * @param id
+	 *            the id to set
 	 */
 	public void setId(int id) {
 		this.id = id;
@@ -87,7 +81,8 @@ public class LigneCommande {
 	}
 
 	/**
-	 * @param quantite the quantite to set
+	 * @param quantite
+	 *            the quantite to set
 	 */
 	public void setQuantite(int quantite) {
 		this.quantite = quantite;
@@ -101,37 +96,51 @@ public class LigneCommande {
 	}
 
 	/**
-	 * @param prix the prix to set
+	 * @param prix
+	 *            the prix to set
 	 */
 	public void setPrix(int prix) {
 		this.prix = prix;
 	}
 
 	/**
-	 * @return the listeProduits
+	 * @return the produit
 	 */
-	public List<Produit> getListeProduits() {
-		return listeProduits;
+	public Produit getProduit() {
+		return produit;
 	}
 
 	/**
-	 * @param listeProduits the listeProduits to set
+	 * @param produit
+	 *            the produit to set
 	 */
-	public void setListeProduits(List<Produit> listeProduits) {
-		this.listeProduits = listeProduits;
+	public void setProduit(Produit produit) {
+		this.produit = produit;
 	}
 
-	/* (non-Javadoc)
+	/**
+	 * @return the commande
+	 */
+	public Commande getCommande() {
+		return commande;
+	}
+
+	/**
+	 * @param commande
+	 *            the commande to set
+	 */
+	public void setCommande(Commande commande) {
+		this.commande = commande;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
 	public String toString() {
-		return "LigneCommande [id=" + id + ", quantite=" + quantite + ", prix=" + prix + ", listeProduits="
-				+ listeProduits + "]";
+		return "LigneCommande [id=" + id + ", quantite=" + quantite + ", prix=" + prix + "]";
 	}
-	
-	
-	
-	
-	
+
 }
