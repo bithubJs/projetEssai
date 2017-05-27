@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+
+<html>
+
+<jsp:include page="../templates/header.jsp" />
+
+<body>
+<jsp:include page="../templates/nav.jsp"/>
+
+<jsp:include page="../templates/footer.jsp">
+
+</body>
+</html>

@@ -1,10 +1,13 @@
 package fr.adaming.controllers;
 
+import java.io.*;
 import java.util.List;
 
 import javax.validation.Valid;
 
+import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -13,6 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import fr.adaming.model.Categorie;
@@ -36,9 +40,8 @@ public class SithECommerceController {
 	@RequestMapping(value = "/accueil", method = RequestMethod.GET)
 	public String accueilSith(ModelMap model) {
 
-		model.addAttribute("msg1", "Sith e-commerce");
-		model.addAttribute("msg2", "Que la force soit avec ton panier");
-		model.addAttribute("msg3", "Ne jamais oublier, panier vide je te plein, panier plein je te ... plein plus !");
+		model.addAttribute("msg1", "Que la force soit avec ton panier");
+		model.addAttribute("msg2", "Ne jamais oublier, panier vide je te plein, panier plein je te ... plein plus !");
 
 		return "accueil";
 
@@ -97,4 +100,18 @@ public class SithECommerceController {
 
 		return "accueil";
 	}
+
+	@RequestMapping(value = "/photoCategorie", produces = MediaType.IMAGE_JPEG_VALUE)
+	@ResponseBody
+	public byte[] getPhoto(Long catId) throws IOException {
+
+		Categorie cat_rec = categorieService.getCategorieById(catId);
+
+		if (cat_rec.getPhoto() == null) {
+			return new byte[0];
+		} else {
+			return IOUtils.toByteArray(new ByteArrayInputStream(cat_rec.getPhoto()));
+		}
+	}
+
 }

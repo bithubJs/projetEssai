@@ -11,11 +11,21 @@
 
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 
+<script type="text/javascript" src="JS/jquery-3.2.1.js"></script>
+<script type="text/javascript" src="JS/bootstrap.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="<%=request.getContextPath()%>/resources/css/bootstrap.css">
+<link rel="stylesheet" type="text/css"
+	href="<%=request.getContextPath()%>/resources/css/bootstrap-theme.css">
+
 <title>Formulaire Ajouter des Produits</title>
 
 </head>
 
 <body>
+
+	<%@ include file="/WEB-INF/templates/header.jsp"%>
+	<%@ include file="/WEB-INF/templates/nav.jsp"%>
 
 	<h1 style="color: red; text-align: center">Ajouter des Produits</h1>
 
@@ -54,11 +64,6 @@
 		<input type="submit" value="Ajouter le produit">
 	</form:form>
 
-
-
-	<br />
-	<a href="accueil">Retourner à l'accueil</a>
-	<a href="<c:url value="/j_spring_security_logout"/>">Se déconnecter</a>
-
+	<%@ include file="/WEB-INF/templates/footer.jsp"%>
 </body>
 </html>
