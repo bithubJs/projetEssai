@@ -28,15 +28,13 @@ public class Produit implements Serializable {
 	@Column(name = "id_p")
 	private Long idProduit;
 
-	@NotEmpty
-	@Size(min = 1, max = 6)
 	private String description;
 	private String designation;
 	private double prix;
 	private int quantite;
 	private boolean selectionne;
 
-	private String photo;
+	private byte[] photo;
 
 	@ManyToOne
 	@JoinColumn(name = "categorie_id", referencedColumnName = "id_ca")
@@ -58,7 +56,7 @@ public class Produit implements Serializable {
 	 * @param photo
 	 */
 	public Produit(String designation, String description, double prix, int quantite, boolean selectionne,
-			String photo) {
+			byte[] photo) {
 		super();
 		this.designation = designation;
 		this.description = description;
@@ -78,7 +76,7 @@ public class Produit implements Serializable {
 	 * @param photo
 	 */
 	public Produit(Long idProduit, String designation, String description, double prix, int quantite,
-			boolean selectionne, String photo) {
+			boolean selectionne, byte[] photo) {
 		super();
 		this.idProduit = idProduit;
 		this.designation = designation;
@@ -182,7 +180,7 @@ public class Produit implements Serializable {
 	/**
 	 * @return the photo
 	 */
-	public String getPhoto() {
+	public byte[] getPhoto() {
 		return photo;
 	}
 
@@ -190,7 +188,7 @@ public class Produit implements Serializable {
 	 * @param photo
 	 *            the photo to set
 	 */
-	public void setPhoto(String photo) {
+	public void setPhoto(byte[] photo) {
 		this.photo = photo;
 	}
 

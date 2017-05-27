@@ -14,8 +14,7 @@
 <body>
 
 	<div>
-		<img style="width: 100%" src="<c:url value="/images/header.jpg" />"
-			onclick="accueil.jsp" />
+		<img style="width: 100%" src="<c:url value="/resources/images/header.jpg" />" onclick="accueil.jsp" />
 	</div>
 
 

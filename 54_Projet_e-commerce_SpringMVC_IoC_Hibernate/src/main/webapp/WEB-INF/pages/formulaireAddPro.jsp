@@ -11,12 +11,14 @@
 
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 
-<script type="text/javascript" src="JS/jquery-3.2.1.js"></script>
-<script type="text/javascript" src="JS/bootstrap.js"></script>
+<script type="text/javascript"
+	src="<c:url value="/resources/js/jquery-3.2.1.js" />"></script>
+<script type="text/javascript"
+	src="<c:url value="/resources/js/bootstrap.js" />"></script>
 <link rel="stylesheet" type="text/css"
-	href="<%=request.getContextPath()%>/resources/css/bootstrap.css">
+	href="<c:url value="/resources/css/bootstrap.css" />">
 <link rel="stylesheet" type="text/css"
-	href="<%=request.getContextPath()%>/resources/css/bootstrap-theme.css">
+	href="<c:url value="/resources/css/bootstrap-theme.css" />">
 
 <title>Formulaire Ajouter des Produits</title>
 
@@ -29,39 +31,51 @@
 
 	<h1 style="color: red; text-align: center">Ajouter des Produits</h1>
 
-	<form:form action="addProduit" method="POST" modelAttribute="mProduit">
-		<form:input path="hidden" path="idProduit" />
-		<br />
-		Categorie : <form:input path="categorie.idCategorie"
-			items="${categories}" itemLabel="nomCategorie"
-			itemValue="idCategorie" />
-		<form:errors path="categorie.idCategorie" cssStyle="color:red" />
-		<br />
-		Description : <form:input path="description" />
-		<form:errors path="description" cssStyle="color:red" />
-		<br />
-		Designation  :<form:input path="designation" />
-		<form:errors path="designation" cssStyle="color:red" />
-		<br />
-		Prix  :<form:input path="prix" />
-		<form:errors path="prix" cssStyle="color:red" />
-		<br />
-		Quantite  :<form:input path="quantite" />
-		<form:errors path="quantite" cssStyle="color:red" />
-		<br />
-		Selectionne  :<form:input path="selectionne" />
-		<form:errors path="selectionne" cssStyle="color:red" />
-		<br />
-		Photo  :<c:if test="${produit.idProduit!=null}">
-			<form:input type="hidden" path="photo" />
-			<img alt=""
-				src="<%=request.getContextPath()%>/photoProduit?idP=${produit.idProduit}">
-			<form:errors path="photo" cssStyle="color:red" />
-			<br />
-		</c:if>
-		<form:input type="file" name="file"></form:input>
-		<form:errors path="file" cssStyle="color:red" />
-		<input type="submit" value="Ajouter le produit">
+	<
+	<div align="center">
+		<h1 style="color: red">Ajouter des produits</h1>
+	</div>
+
+	<form:form method="POST" action="addProduit" modelAttribute="mProduit"
+		enctype="multipart/form-data">
+
+		<table>
+			<tr>
+				<td><form:input type="hidden" path="idProduit" /></td>
+			</tr>
+			<tr>
+				<td>Designation</td>
+				<td><form:input path="designation" /></td>
+				<td><form:errors path="designation" cssStyle="color:red" /></td>
+			</tr>
+			<tr>
+				<td>Description</td>
+				<td><form:input path="description" /></td>
+				<td><form:errors path="description" cssStyle="color:red" /></td>
+			</tr>
+			<tr>
+				<td>Prix</td>
+				<td><form:input path="prix" /></td>
+				<td><form:errors path="prix" cssStyle="color:red" /></td>
+			</tr>
+			<tr>
+				<td>Quantité</td>
+				<td><form:input path="prix" /></td>
+				<td><form:errors path="prix" cssStyle="color:red" /></td>
+			</tr>
+			<tr>
+				<td>Sélectionné</td>
+				<td><form:input path="selectionne" /></td>
+				<td><form:errors path="selectionne" cssStyle="color:red" /></td>
+			</tr>
+			<tr>
+				<td>Photo</td>
+				<td><input type="file" name="file"></td>
+			</tr>
+			<tr>
+				<td><input type="submit" value="Ajouter le produit"></td>
+			</tr>
+		</table>
 	</form:form>
 
 	<%@ include file="/WEB-INF/templates/footer.jsp"%>

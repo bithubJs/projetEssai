@@ -11,12 +11,14 @@
 
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 
-<script type="text/javascript" src="JS/jquery-3.2.1.js"></script>
-<script type="text/javascript" src="JS/bootstrap.js"></script>
+<script type="text/javascript"
+	src="<c:url value="/resources/js/jquery-3.2.1.js" />"></script>
+<script type="text/javascript"
+	src="<c:url value="/resources/js/bootstrap.js" />"></script>
 <link rel="stylesheet" type="text/css"
-	href="<%=request.getContextPath()%>/resources/css/bootstrap.css">
+	href="<c:url value="/resources/css/bootstrap.css" />">
 <link rel="stylesheet" type="text/css"
-	href="<%=request.getContextPath()%>/resources/css/bootstrap-theme.css">
+	href="<c:url value="/resources/css/bootstrap-theme.css" />">
 
 <title>Formulaire Ajouter des Catégories</title>
 
@@ -31,15 +33,12 @@
 		<h1 style="color: red">Ajouter des catéGORILLE</h1>
 	</div>
 
-	<form:form action="addCategorie" method="POST"
-		modelAttribute="mCategorie">
+	<form:form method="POST" action="addCategorie"
+		modelAttribute="mCategorie" enctype="multipart/form-data">
 
 		<table>
 			<tr>
-				<td>Id Catégorie</td>
-				<td>${categorie.idCategorie}<form:input type="hidden"
-						path="idCategorie" /></td>
-				<td><form:errors path="idCategorie"></form:errors></td>
+				<td><form:input type="hidden" path="idCategorie" /></td>
 			</tr>
 			<tr>
 				<td>Nom Catégorie</td>
@@ -53,9 +52,6 @@
 			</tr>
 			<tr>
 				<td>Photo Catégorie</td>
-				<c:if test="${categorie.idCategorie!=null}">
-					<td><img src="photoCategorie?catId=${categorie.idCategorie}"></td>
-				</c:if>
 				<td><input type="file" name="file"></td>
 			</tr>
 			<tr>
@@ -63,31 +59,6 @@
 			</tr>
 		</table>
 	</form:form>
-
-	<div align="center">
-		<table width="100%" cellpadding="6">
-			<tr style="background-color: grey; color: white; text-align: center;">
-				<th>ID</th>
-				<th>Nom des catégories</th>
-				<th>Photo des catégories</th>
-				<th>Description des catégories</th>
-			</tr>
-			<c:forEach var="accueil" items="${categoriesListe}">
-				<tr>
-					<td>${categorie.idCategorie}</td>
-					<td>${categorie.nomCategorie}</td>
-					<td><img src="photoCategorie?catId=${categorie.idCategorie}"></td>
-					<td>${categorie.description}</td>
-					<td><a
-						href="${pageContext.request.contextPath}/sith-e-commerce/deleteCategorie/${categorie.idCategorie}">Supprimer</a>
-						| <a
-						href="${pageContext.request.contextPath}/sith-e-commerce/updateCategorie?idCategorie=${categorie.idCategorie}">Modifier</a></td>
-					<!-- point d'int pour dire parametre de la requete url -->
-					<!-- pour faire la différence entre le slash et le point d'id, pour le slah c'est une ressource on va utiliser atPathVariable pour le point d'int c'est un param donc atRequestParam-->
-				</tr>
-			</c:forEach>
-		</table>
-	</div>
 
 	<%@ include file="/WEB-INF/templates/footer.jsp"%>
 </body>

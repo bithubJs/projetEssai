@@ -1,18 +1,20 @@
 package fr.adaming.controllers;
 
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.util.List;
 
-import javax.validation.Valid;
-
+import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import fr.adaming.model.Produit;
@@ -49,27 +51,24 @@ public class ProduitController {
 	}
 
 	@RequestMapping(value = "/addProduit", method = RequestMethod.POST)
-	public String addProduit(ModelMap model, @Valid @ModelAttribute("mProduit") Produit pProduit,
-			BindingResult result) {
+	public String addProduit(Produit pProduit, ModelMap model, MultipartFile file) throws Exception {
 
-		if (result.hasErrors()) {
+		if (!file.isEmpty()) {
+			pProduit.setPhoto(file.getBytes());
 
-			return "formulaireAddPro";
-
-		} else {
-			if (pProduit.getIdProduit() == null) {
-				produitService.addProduit(pProduit);
-			} else {
-				produitService.updateProduit(pProduit);
-			}
-			model.addAttribute("produitsListe", produitService.getAllProduits());
-
-			return "accueil";
 		}
+		if (pProduit.getIdProduit() == null) {
+			produitService.addProduit(pProduit);
+		} else {
+			produitService.updateProduit(pProduit);
+		}
+		model.addAttribute("produitsListe", produitService.getAllProduits());
+
+		return "accueil";
 	}
 
-	@RequestMapping(value = "/updateProduit")
-	public ModelAndView formulaireUpdatePro(@RequestParam("idProduit") Long proId) {
+	@RequestMapping(value = "/updateProduit", method = RequestMethod.GET)
+	public ModelAndView formulaireUpdatePro(Long proId) {
 
 		Produit pro_rec = produitService.getProduitById(proId);
 		String viewName = "formulaireAddPro";
@@ -77,7 +76,7 @@ public class ProduitController {
 		return new ModelAndView(viewName, "mProduit", pro_rec);
 	}
 
-	@RequestMapping(value = "/deleteProduit/{idProduit}")
+	@RequestMapping(value = "/deleteProduit/{idProduit}", method = RequestMethod.GET)
 	public String formulaireDeletePro(ModelMap model, @PathVariable("idProduit") Long proId) {
 
 		Produit pro_rec = produitService.getProduitById(proId);
@@ -85,6 +84,19 @@ public class ProduitController {
 		model.addAttribute("produitsListe", produitService.getAllProduits());
 
 		return "accueil";
+	}
+
+	@RequestMapping(value = "/photoProduit", produces = MediaType.IMAGE_JPEG_VALUE)
+	@ResponseBody
+	public byte[] getPhoto(Long proId) throws IOException {
+
+		Produit pro_rec = produitService.getProduitById(proId);
+
+		if (pro_rec.getPhoto() == null) {
+			return new byte[0];
+		} else {
+			return IOUtils.toByteArray(new ByteArrayInputStream(pro_rec.getPhoto()));
+		}
 	}
 
 }

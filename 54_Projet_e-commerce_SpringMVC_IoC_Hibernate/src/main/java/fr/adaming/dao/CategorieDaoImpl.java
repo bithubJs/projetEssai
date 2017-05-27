@@ -67,9 +67,9 @@ public class CategorieDaoImpl implements ICategorieDao {
 	public void deleteCategorie(Categorie c) {
 
 		s = sf.getCurrentSession();
-		String reqDelete = "DELETE FROM Categorie c WHERE p.idCategorie=:pIdc";
+		String reqDelete = "DELETE FROM Categorie c WHERE c.idCategorie=:cIdc";
 		Query query = s.createQuery(reqDelete);
-		query.setParameter("pIdc", c.getIdCategorie());
+		query.setParameter("cIdc", c.getIdCategorie());
 		query.executeUpdate();
 
 	}

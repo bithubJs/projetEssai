@@ -3,20 +3,16 @@ package fr.adaming.controllers;
 import java.io.*;
 import java.util.List;
 
-import javax.validation.Valid;
-
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import fr.adaming.model.Categorie;
@@ -63,27 +59,24 @@ public class SithECommerceController {
 	}
 
 	@RequestMapping(value = "/addCategorie", method = RequestMethod.POST)
-	public String addCategorie(ModelMap model, @Valid @ModelAttribute("mCategorie") Categorie cCategorie,
-			BindingResult result) {
+	public String addCategorie(Categorie cCategorie, ModelMap model, MultipartFile file) throws Exception {
 
-		if (result.hasErrors()) {
+		if (!file.isEmpty()) {
+			cCategorie.setPhoto(file.getBytes());
 
-			return "formulaireAdd";
-
-		} else {
-			if (cCategorie.getIdCategorie() == null) {
-				categorieService.addCategorie(cCategorie);
-			} else {
-				categorieService.updateCategorie(cCategorie);
-			}
-			model.addAttribute("categoriesListe", categorieService.getAllCategories());
-
-			return "accueil";
 		}
+		if (cCategorie.getIdCategorie() == null) {
+			categorieService.addCategorie(cCategorie);
+		} else {
+			categorieService.updateCategorie(cCategorie);
+		}
+		model.addAttribute("categoriesListe", categorieService.getAllCategories());
+
+		return "accueil";
 	}
 
-	@RequestMapping(value = "/updateCategorie")
-	public ModelAndView formulaireUpdateCat(@RequestParam("idCategorie") Long catId) {
+	@RequestMapping(value = "/updateCategorie", method = RequestMethod.GET)
+	public ModelAndView formulaireUpdateCat(Long catId) {
 
 		Categorie cat_rec = categorieService.getCategorieById(catId);
 		String viewName = "formulaireAdd";
@@ -91,7 +84,7 @@ public class SithECommerceController {
 		return new ModelAndView(viewName, "mCategorie", cat_rec);
 	}
 
-	@RequestMapping(value = "/deleteCategorie/{idCategorie}")
+	@RequestMapping(value = "/deleteCategorie/{idCategorie}", method = RequestMethod.GET)
 	public String formulaireDeleteCat(ModelMap model, @PathVariable("idCategorie") Long catId) {
 
 		Categorie cat_rec = categorieService.getCategorieById(catId);

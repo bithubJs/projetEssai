@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,9 +27,9 @@
 
 	<div>
 		<img class="imageGauche"
-			src="<c:url value="/images/StormtrooperFooter.jpg" />" /> <img
-			class="imageDroite"
-			src="<c:url value="/images/StormtrooperFooter.jpg" />" />
+			src="<c:url value="/resources/images/StormtrooperFooter.jpg" />" />
+		<img class="imageDroite"
+			src="<c:url value="/resources/images/StormtrooperFooter.jpg" />" />
 	</div>
 	<br />
 	<div style="background-color: black; height: 40px">
@@ -62,7 +63,7 @@
 			</table>
 			<div style="background-color: black">
 				<br /> <img cellpadding="12"
-					src="<c:url value="/images/cardsaccepted.png" />" />
+					src="<c:url value="/resources/images/cardsaccepted.png" />" />
 			</div>
 		</div>
 	</div>
