@@ -30,7 +30,7 @@
 	<%@ include file="/WEB-INF/templates/nav.jsp"%>
 
 	<div align="center">
-		<h1 style="color: red">Ajouter des catéGORILLE</h1>
+		<h1 style="color: red">Ajouter des catégories</h1>
 	</div>
 
 	<form:form method="POST" action="addCategorie"

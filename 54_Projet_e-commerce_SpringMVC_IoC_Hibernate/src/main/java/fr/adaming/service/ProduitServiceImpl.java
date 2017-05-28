@@ -47,9 +47,9 @@ public class ProduitServiceImpl implements IProduitService {
 	}
 
 	@Override
-	public Produit getProduitById(Long id) {
+	public Produit getProduitById(Long proId) {
 
-		return pDao.getProduitById(id);
+		return pDao.getProduitById(proId);
 	}
 
 	@Override

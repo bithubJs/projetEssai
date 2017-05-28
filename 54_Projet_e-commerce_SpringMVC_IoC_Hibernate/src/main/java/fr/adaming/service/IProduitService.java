@@ -16,7 +16,7 @@ public interface IProduitService {
 
 	public List<Produit> produitsSelectionnes();
 
-	public Produit getProduitById(Long id);
+	public Produit getProduitById(Long proId);
 
 	public void updateProduit(Produit p);
 

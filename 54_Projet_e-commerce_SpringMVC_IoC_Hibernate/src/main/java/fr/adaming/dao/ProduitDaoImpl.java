@@ -33,7 +33,7 @@ public class ProduitDaoImpl implements IProduitDao {
 	public List<Produit> getAllProduits() {
 
 		s = sf.getCurrentSession();
-		String req_GetAllProduits = "FROM Produit";
+		String req_GetAllProduits = "SELECT p FROM Produit p";
 		Query query = s.createQuery(req_GetAllProduits);
 
 		return query.list();

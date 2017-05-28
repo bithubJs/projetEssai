@@ -29,9 +29,6 @@
 	<%@ include file="/WEB-INF/templates/header.jsp"%>
 	<%@ include file="/WEB-INF/templates/nav.jsp"%>
 
-	<h1 style="color: red; text-align: center">Ajouter des Produits</h1>
-
-	<
 	<div align="center">
 		<h1 style="color: red">Ajouter des produits</h1>
 	</div>
