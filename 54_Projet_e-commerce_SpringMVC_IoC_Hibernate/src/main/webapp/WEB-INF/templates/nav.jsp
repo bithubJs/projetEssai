@@ -24,12 +24,12 @@
 				<a class="navbar-brand"
 					href="${pageContext.request.contextPath}/sith-e-commerce/accueil">Accueil</a>
 				<a class="navbar-brand"
-					href="${pageContext.request.contextPath}/sith-e-commerce/formulaireAdd">Catégories</a>
+					href="${pageContext.request.contextPath}/categories/formulaireAdd">Catégories</a>
 				<a class="navbar-brand"
 					href="${pageContext.request.contextPath}/produits/formulaireAddPro">Produits</a>
 			</div>
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="loginPage">Login</a></li>
+				<li><a href="/loginPage">Login</a></li>
 				<li><a href="<c:url value="/j_spring_security_logout"/>">Logout</a></li>
 			</ul>
 		</div>

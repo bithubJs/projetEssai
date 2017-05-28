@@ -33,13 +33,13 @@ public class ProduitController {
 		this.produitService = produitService;
 	}
 
-	@RequestMapping(method = RequestMethod.GET)
+	@RequestMapping(value="/accueil", method = RequestMethod.GET)
 	public String afficherListeProduits(ModelMap model) {
 
 		List<Produit> listeProduits = produitService.getAllProduits();
 		model.addAttribute("produitsListe", listeProduits);
 
-		return "accueil";
+		return "produits";
 	}
 
 	@RequestMapping(value = "/formulaireAddPro", method = RequestMethod.GET)
@@ -62,7 +62,7 @@ public class ProduitController {
 		}
 		model.addAttribute("produitsListe", produitService.getAllProduits());
 
-		return "accueil";
+		return "produits";
 	}
 
 	@RequestMapping(value = "/updateProduit", method = RequestMethod.GET)
@@ -81,7 +81,7 @@ public class ProduitController {
 		produitService.deleteProduit(pro_rec);
 		model.addAttribute("produitsListe", produitService.getAllProduits());
 
-		return "accueil";
+		return "produits";
 	}
 
 	@RequestMapping(value = "/photoProduit", produces = MediaType.IMAGE_JPEG_VALUE)
