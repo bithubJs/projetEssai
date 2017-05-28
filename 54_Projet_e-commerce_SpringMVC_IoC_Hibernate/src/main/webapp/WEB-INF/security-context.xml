@@ -1,23 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:security="http://www.springframework.org/schema/security"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.1.xsd
 		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.2.xsd">
 
-<context:property-placeholder location="classpath*:dataSource.properties" />
+	<context:property-placeholder location="classpath*:dataSource.properties" />
 
 	<!-- Déclaration d'un dataSource -->
-	<bean id="dataSourceBean" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+	<bean id="dataSourceBean"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="${ecommerce.driver}" />
 		<property name="url" value="${ecommerce.url}" />
 		<property name="username" value="${ecommerce.user}" />
 		<property name="password" value="${ecommerce.mdp}" />
 	</bean>
 
+	<!-- Partie url protegee et autorisation -->
+	<security:http>
+		<!-- url protegees et les authorisation -->
+		<security:intercept-url pattern="/**"
+			access="ROLE_ADMIN_CAT" />
 
+		<security:intercept-url pattern="/produits/**"
+			access="ROLE_ADMIN_PRO" />
+
+		<!-- Utiliser un formulaire perso -->
+		<security:form-login login-page="/login"
+			authentication-failure-url="/loginEchec" />
+
+		<!-- pour la deconnection -->
+		<security:logout logout-success-url="/logout" />
+
+		<!-- Pour les accès non authorisés -->
+		<security:access-denied-handler
+			error-page="/denied" />
+
+	</security:http>
+
+	<!-- Partie de l'authentification -->
+	<security:authentication-manager>
+		<security:authentication-provider>
+
+			<!-- Utilisation de la base de données pour récup l'identifiant, password, 
+				role -->
+
+			<security:jdbc-user-service
+				data-source-ref="dataSourceBean"
+				users-by-username-query="SELECT username, password, actived FROM users WHERE username=?"
+				authorities-by-username-query="SELECT u.username, r.rolename FROM users u,roles r WHERE u.id_u=r.user_id AND u.username=?" />
+
+		</security:authentication-provider>
+	</security:authentication-manager>
 
 
 </beans>

@@ -1,29 +1,34 @@
 package fr.adaming.controllers;
 
 import java.io.*;
-import java.util.List;
 
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.PathVariable;
+
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
-import fr.adaming.model.Categorie;
+import fr.adaming.model.Panier;
+import fr.adaming.model.Produit;
 import fr.adaming.service.ICategorieService;
+import fr.adaming.service.IProduitService;
 
 @Controller
 @RequestMapping("/sith-e-commerce")
+@SessionAttributes("panier")
 public class SithECommerceController {
 
 	@Autowired
 	private ICategorieService categorieService;
+
+	@Autowired
+	private IProduitService produitService;
 
 	/**
 	 * @param categorieService
@@ -31,6 +36,14 @@ public class SithECommerceController {
 	 */
 	public void setCategorieService(ICategorieService categorieService) {
 		this.categorieService = categorieService;
+	}
+
+	/**
+	 * @param produitService
+	 *            the produitService to set
+	 */
+	public void setProduitService(IProduitService produitService) {
+		this.produitService = produitService;
 	}
 
 	@RequestMapping(value = "/accueil", method = RequestMethod.GET)
@@ -43,68 +56,53 @@ public class SithECommerceController {
 
 	}
 
-	@RequestMapping(method = RequestMethod.GET)
-	public String afficherListeCategories(ModelMap model) {
-
-		List<Categorie> listeCategories = categorieService.getAllCategories();
-		model.addAttribute("categoriesListe", listeCategories);
-
-		return "accueil";
-	}
-
-	@RequestMapping(value = "/formulaireAdd", method = RequestMethod.GET)
-	public ModelAndView formulaireAjoutCat() {
-
-		return new ModelAndView("formulaireAdd", "mCategorie", new Categorie());
-	}
-
-	@RequestMapping(value = "/addCategorie", method = RequestMethod.POST)
-	public String addCategorie(Categorie cCategorie, ModelMap model, MultipartFile file) throws Exception {
-
-		if (!file.isEmpty()) {
-			cCategorie.setPhoto(file.getBytes());
-
-		}
-		if (cCategorie.getIdCategorie() == null) {
-			categorieService.addCategorie(cCategorie);
-		} else {
-			categorieService.updateCategorie(cCategorie);
+	@RequestMapping(value = "/accueil")
+	public String accueil(ModelMap model) {
+		if (model.get("panier") == null) {
+			model.addAttribute("panier", new Panier());
 		}
 		model.addAttribute("categoriesListe", categorieService.getAllCategories());
-
+		model.addAttribute("produitsListe", produitService.produitsSelectionnes());
 		return "accueil";
 	}
 
-	@RequestMapping(value = "/updateCategorie", method = RequestMethod.GET)
-	public ModelAndView formulaireUpdateCat(Long catId) {
-
-		Categorie cat_rec = categorieService.getCategorieById(catId);
-		String viewName = "formulaireAdd";
-
-		return new ModelAndView(viewName, "mCategorie", cat_rec);
-	}
-
-	@RequestMapping(value = "/deleteCategorie/{idCategorie}", method = RequestMethod.GET)
-	public String formulaireDeleteCat(ModelMap model, @PathVariable("idCategorie") Long catId) {
-
-		Categorie cat_rec = categorieService.getCategorieById(catId);
-		categorieService.deleteCategorie(cat_rec);
+	@RequestMapping(value = "/produitsByCat")
+	public String produitsByCat(@RequestParam Long idCat, ModelMap model) {
 		model.addAttribute("categoriesListe", categorieService.getAllCategories());
-
+		model.addAttribute("produitsListe", produitService.produitsByCategorie(idCat));
 		return "accueil";
 	}
 
-	@RequestMapping(value = "/photoCategorie", produces = MediaType.IMAGE_JPEG_VALUE)
+	@RequestMapping(value = "/produitsByKW")
+	public String produitByKW(@RequestParam String m, ModelMap model) {
+		model.addAttribute("m", m);
+		model.addAttribute("categoriesListe", categorieService.getAllCategories());
+		model.addAttribute("produitsListe", produitService.getProduitsByKeyWord(m));
+		return "accueil";
+	}
+
+	@RequestMapping(value = "/photoProduit", produces = MediaType.IMAGE_JPEG_VALUE)
 	@ResponseBody
-	public byte[] getPhoto(Long catId) throws IOException {
+	public byte[] photoProd(@RequestParam("idP") Long idP) throws Exception {
+		Produit pro_rec = produitService.getProduitById(idP);
+		String path = System.getProperty("java.io.tmpdir") + "/" + pro_rec.getIdProduit();
+		return IOUtils.toByteArray(new FileInputStream(path));
+	}
 
-		Categorie cat_rec = categorieService.getCategorieById(catId);
-
-		if (cat_rec.getPhoto() == null) {
-			return new byte[0];
+	@RequestMapping(value = "/ajouterPanier")
+	public String ajouterAuPanier(@RequestParam Long idProduit, @RequestParam int quantite, ModelMap model) {
+		Panier panier = null;
+		if (model.get("panier") == null) {
+			panier = new Panier();
+			model.addAttribute("panier", panier);
 		} else {
-			return IOUtils.toByteArray(new ByteArrayInputStream(cat_rec.getPhoto()));
+			panier = (Panier) model.get("panier");
+			panier.addProduitPanier(produitService.getProduitById(idProduit), quantite);
+			model.addAttribute("categoriesListe", categorieService.getAllCategories());
+			model.addAttribute("produitsListe", produitService.produitsSelectionnes());
+			return "accueil";
 		}
+		return "accueil";
 	}
 
 }

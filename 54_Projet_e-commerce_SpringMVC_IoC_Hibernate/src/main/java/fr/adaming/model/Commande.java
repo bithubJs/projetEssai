@@ -1,9 +1,7 @@
 package fr.adaming.model;
 
 import java.util.Calendar;
-import java.util.Collection;
 import java.util.List;
-import java.util.Map;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;

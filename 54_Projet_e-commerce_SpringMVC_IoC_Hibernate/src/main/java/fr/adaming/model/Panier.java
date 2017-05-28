@@ -32,13 +32,19 @@ public class Panier implements Serializable {
 	}
 
 	public int getSize() {
-		return items.size();
+		int p = 0;
+		Collection<LigneCommande> items = getLigneCommande();
+		for (LigneCommande lc : items) {
+			p += lc.getQuantite();
+		}
+		return p;
 	}
 
 	public double getTotal() {
 		double total = 0;
-		for (LigneCommande lc : items.values()) {
-			total += lc.getPrix() * lc.getQuantite();
+		Collection<LigneCommande> items = getLigneCommande();
+		for (LigneCommande lc : items) {
+			total += lc.getQuantite() * lc.getProduit().getPrix();
 		}
 		return total;
 	}
