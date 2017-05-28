@@ -49,7 +49,7 @@ public class ClientDaoImpl implements IClientDao {
 		s.save(c);
 		Commande commande = new Commande();
 		commande.setClient(c);
-		commande.setListeLignesCommande((List<LigneCommande>) panier.getItems());
+		commande.setListeLignesCommande((List<LigneCommande>) panier.getLigneCommande());
 		s.save(commande);
 		return commande;
 	}
