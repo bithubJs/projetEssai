@@ -25,16 +25,15 @@
 </head>
 <body>
 
-	<div>
-		<img class="imageGauche"
-			src="<c:url value="/resources/images/StormtrooperFooter.jpg" />" />
-		<img class="imageDroite"
-			src="<c:url value="/resources/images/StormtrooperFooter.jpg" />" />
-	</div>
+
 	<br />
-	<div style="background-color: black; height: 40px">
+	<div style="background-color: black; height: 250px">
+	<img class="imageGauche"
+			src="<c:url value="/resources/images/StormtrooperFooter3.png" />" />
+			<img class="imageDroite"
+			src="<c:url value="/resources/images/StormtrooperFooter3.png" />" />
 		<div align="center">
-			<table cellpadding="9" width="100%" style="text-align: center">
+			<table cellpadding="6" width="50%" style="align:center; text-align: center">
 				<tr style="background-color: black; color: white">
 					<td><b>Besoin d'aide</b></td>
 					<td><b>Boutique à Lille</b></td>
@@ -61,9 +60,11 @@
 					<td>Notre boutique Amazon</td>
 				</tr>
 			</table>
+			
 			<div style="background-color: black">
-				<br /> <img cellpadding="12"
-					src="<c:url value="/resources/images/cardsaccepted.png" />" />
+				<br /> <img cellpadding="12" src="<c:url value="/resources/images/cardsaccepted.png" />" />
+					<h6 style="color: white; text-align: center">Sith-e Commerce, 2 Rue Hegel, 59160 Lille - Lille Adaming Web Designers : Anton1 & Ant'One</h6>
+					<h6 style="color: white; text-align: center">Copyright © 2017 Dernière mise à jour web : Aujourd'hui - Lundi 29 Mai 2017</h6>
 			</div>
 		</div>
 	</div>
