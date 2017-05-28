@@ -1,6 +1,7 @@
 package fr.adaming.model;
 
 import java.io.Serializable;
+import java.util.Arrays;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,11 +9,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.Size;
-
-import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 @Table(name = "produits")
@@ -34,6 +33,7 @@ public class Produit implements Serializable {
 	private int quantite;
 	private boolean selectionne;
 
+	@Lob
 	private byte[] photo;
 
 	@ManyToOne
@@ -199,9 +199,9 @@ public class Produit implements Serializable {
 	 */
 	@Override
 	public String toString() {
-		return "Produit [idProduit=" + idProduit + ", designation=" + designation + ", description=" + description
-				+ ", prix=" + prix + ", quantite=" + quantite + ", selectionne=" + selectionne + ", photo=" + photo
-				+ "]";
+		return "Produit [idProduit=" + idProduit + ", description=" + description + ", designation=" + designation
+				+ ", prix=" + prix + ", quantite=" + quantite + ", selectionne=" + selectionne + ", photo="
+				+ Arrays.toString(photo) + "]";
 	}
 
 }
