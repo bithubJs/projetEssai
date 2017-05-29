@@ -1,6 +1,7 @@
 package fr.adaming.controllers;
 
 import java.io.*;
+import java.util.List;
 
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,9 +15,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import fr.adaming.model.Categorie;
 import fr.adaming.model.Panier;
 import fr.adaming.model.Produit;
 import fr.adaming.service.ICategorieService;
+import fr.adaming.service.IClientService;
 import fr.adaming.service.IProduitService;
 
 @Controller
@@ -29,6 +32,9 @@ public class SithECommerceController {
 
 	@Autowired
 	private IProduitService produitService;
+
+	@Autowired
+	private IClientService clientService;
 
 	/**
 	 * @param categorieService
@@ -46,6 +52,14 @@ public class SithECommerceController {
 		this.produitService = produitService;
 	}
 
+	/**
+	 * @param clientService
+	 *            the clientService to set
+	 */
+	public void setClientService(IClientService clientService) {
+		this.clientService = clientService;
+	}
+
 	@RequestMapping(value = "/accueil", method = RequestMethod.GET)
 	public String accueilSith(ModelMap model) {
 
@@ -54,6 +68,24 @@ public class SithECommerceController {
 
 		return "accueil";
 
+	}
+
+	@RequestMapping(value = "/afficherCategories", method = RequestMethod.GET)
+	public String afficherListeCategories(ModelMap model) {
+
+		List<Categorie> listeCategories = categorieService.getAllCategories();
+		model.addAttribute("categoriesListe", listeCategories);
+
+		return "categoriesClient";
+	}
+
+	@RequestMapping(value = "/afficherProduits", method = RequestMethod.GET)
+	public String afficherListeProduits(ModelMap model) {
+
+		List<Produit> listeProduits = produitService.getAllProduits();
+		model.addAttribute("produitsListe", listeProduits);
+
+		return "produitsClient";
 	}
 
 	@RequestMapping(value = "/accueil")

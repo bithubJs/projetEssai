@@ -9,7 +9,7 @@
 	<context:property-placeholder location="classpath*:dataSource.properties" />
 
 	<!-- Déclaration d'un dataSource -->
-	<bean id="dataSourceBean"
+	<bean id="dataSourceBeanS"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="${ecommerce.driver}" />
 		<property name="url" value="${ecommerce.url}" />
@@ -21,10 +21,10 @@
 	<security:http>
 		<!-- url protegees et les authorisation -->
 		<security:intercept-url pattern="/**"
-			access="ROLE_ADMIN_CAT" />
+			access="ROLE_ADMIN_CAT" requires-channel="https" />
 
 		<security:intercept-url pattern="/produits/**"
-			access="ROLE_ADMIN_PRO" />
+			access="ROLE_ADMIN_PRO" requires-channel="https" />
 
 		<!-- Utiliser un formulaire perso -->
 		<security:form-login login-page="/login"
@@ -47,7 +47,7 @@
 				role -->
 
 			<security:jdbc-user-service
-				data-source-ref="dataSourceBean"
+				data-source-ref="dataSourceBeanS"
 				users-by-username-query="SELECT username, password, actived FROM users WHERE username=?"
 				authorities-by-username-query="SELECT u.username, r.rolename FROM users u,roles r WHERE u.id_u=r.user_id AND u.username=?" />
 

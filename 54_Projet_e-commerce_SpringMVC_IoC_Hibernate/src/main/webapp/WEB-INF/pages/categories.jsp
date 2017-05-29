@@ -27,12 +27,18 @@
 	<%@ include file="/WEB-INF/templates/header.jsp"%>
 	<%@ include file="/WEB-INF/templates/nav.jsp"%>
 
+	<a href="${pageContext.request.contextPath}/categories/formulaireAdd">Ajouter
+		une catégorie</a>
+
+	<br />
+
 	<div align="center">
-		<table width="100%" cellpadding="6">
+		<table class="table table-hover">
 			<tr style="background-color: grey; color: white; text-align: center;">
 				<th>Nom des catégories</th>
 				<th>Photo des catégories</th>
 				<th>Description des catégories</th>
+				<th>Opérations</th>
 			</tr>
 			<c:forEach var="categorie" items="${categoriesListe}">
 				<tr>
@@ -51,6 +57,7 @@
 	</div>
 
 	<%@ include file="/WEB-INF/templates/footer.jsp"%>
+
 </body>
 </html>
 

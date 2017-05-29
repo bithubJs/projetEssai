@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -22,7 +21,6 @@ import fr.adaming.service.ICategorieService;
 
 @Controller
 @RequestMapping("/categories")
-@SessionAttributes("sessionAdminCat")
 public class CategorieController {
 
 	@Autowired
@@ -36,7 +34,7 @@ public class CategorieController {
 		this.categorieService = categorieService;
 	}
 
-	@RequestMapping(value = "/accueil", method = RequestMethod.GET)
+	@RequestMapping(value = "/listeCategoriesAdmin", method = RequestMethod.GET)
 	public String afficherListeCategories(ModelMap model) {
 
 		List<Categorie> listeCategories = categorieService.getAllCategories();

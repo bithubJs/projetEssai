@@ -19,7 +19,7 @@
 <link rel="stylesheet" type="text/css"
 	href="<c:url value="/resources/css/bootstrap-theme.css" />">
 
-<title>Produits</title>
+<title>Sith-e commerce - Produits Clients</title>
 
 </head>
 
@@ -27,11 +27,6 @@
 
 	<%@ include file="/WEB-INF/templates/header.jsp"%>
 	<%@ include file="/WEB-INF/templates/nav.jsp"%>
-
-	<a href="${pageContext.request.contextPath}/produits/formulaireAddPro">Ajouter
-		un produit</a>
-
-	<br />
 
 	<div align="center">
 		<table class="table table-hover">
@@ -42,7 +37,6 @@
 				<th>Quantité</th>
 				<th>Sélectionné</th>
 				<th>Photo</th>
-				<th>Opérations</th>
 
 			</tr>
 			<c:forEach var="produit" items="${produitsListe}">
@@ -53,11 +47,6 @@
 					<td>${produit.quantite}</td>
 					<td>${produit.selectionne}</td>
 					<td><img src="photoProduit?proId=${produit.idProduit}"></td>
-
-					<td><a
-						href="${pageContext.request.contextPath}/produits/deleteProduit/${produit.idProduit}">Supprimer</a>
-						| <a
-						href="${pageContext.request.contextPath}/produits/updateProduit?proId=${produit.idProduit}">Modifier</a></td>
 				</tr>
 			</c:forEach>
 		</table>

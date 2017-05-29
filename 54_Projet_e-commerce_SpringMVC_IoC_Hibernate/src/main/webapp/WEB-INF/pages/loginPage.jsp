@@ -28,27 +28,32 @@
 	<%@ include file="/WEB-INF/templates/nav.jsp"%>
 
 	<div>
-
-		<form action="j_spring_security_check" method="post">
-			<table>
-				<tr>
-					<td>Login</td>
-					<td><input type="text" name="j_username" /></td>
-				</tr>
-				<tr>
-					<td>Password</td>
-					<td><input type="password" name="j_password" /></td>
-				</tr>
-				<tr>
-					<td><input type="submit" value="Login"></td>
-				</tr>
-			</table>
+		<form class="form-horizontal" action="j_spring_security_check"
+			method="post">
+			<div class="form-group">
+				<label for="inputEmail3" class="col-sm-2 control-label">Login</label>
+				<div class="col-sm-10">
+					<input type="text" name="j_username" class="form-control"
+						id="inputEmail3" placeholder="Login">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="inputPassword3" class="col-sm-2 control-label">Password</label>
+				<div class="col-sm-10">
+					<input type="password" name="j_password" class="form-control"
+						id="inputPassword3" placeholder="Password">
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-offset-2 col-sm-10">
+					<button type="submit" value="login" class="btn btn-default">Sign
+						in</button>
+				</div>
+			</div>
 		</form>
-
 		<c:if test="${not empty erreur}">
-			<h1 style="color: red">Login ou password est incorrect</h1>
+			<h1 style="color: red">Login ou password incorrect</h1>
 		</c:if>
-
 	</div>
 
 	<%@ include file="/WEB-INF/templates/footer.jsp"%>
