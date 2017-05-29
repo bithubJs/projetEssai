@@ -167,16 +167,15 @@ public class SithECommerceController {
 	public String ajouterItems(ModelMap model, @PathVariable("idP") Long pId, @RequestParam("qt") int quantite) {
 		LigneCommande lc = new LigneCommande(produitService.getProduitById(pId), quantite);
 		panierService.addCommande(lc);
-		;
 		model.addAttribute("pListe", panierService.getCommande());
 		return "panier";
 	}
 
-	@RequestMapping(value = "/panier/delete", method = RequestMethod.GET)
-	public ModelAndView deleteItems(@RequestParam("Id") Long id) {
-		panierService.deleteCommande(id);
-		return new ModelAndView("panier", "pListe", panierService.getCommande());
-	}
+	// @RequestMapping(value = "/panier/delete", method = RequestMethod.GET)
+	// public ModelAndView deleteItems(@RequestParam("Id") Long id) {
+	// panierService.deleteCommande(id);
+	// return new ModelAndView("panier", "pListe", panierService.getCommande());
+	// }
 
 	@RequestMapping(value = "/panier/q+", method = RequestMethod.GET)
 	public ModelAndView addArticleQuantite(@RequestParam("Id") int id) {
