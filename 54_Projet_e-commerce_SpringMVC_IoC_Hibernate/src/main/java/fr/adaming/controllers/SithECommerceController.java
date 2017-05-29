@@ -102,7 +102,7 @@ public class SithECommerceController {
 	public String produitsByCat(@RequestParam Long idCat, ModelMap model) {
 		model.addAttribute("categoriesListe", categorieService.getAllCategories());
 		model.addAttribute("produitsListe", produitService.produitsByCategorie(idCat));
-		return "accueil";
+		return "produitsByCat";
 	}
 
 	@RequestMapping(value = "/produitsByKW")
@@ -110,7 +110,7 @@ public class SithECommerceController {
 		model.addAttribute("m", m);
 		model.addAttribute("categoriesListe", categorieService.getAllCategories());
 		model.addAttribute("produitsListe", produitService.getProduitsByKeyWord(m));
-		return "accueil";
+		return "produitsByKW";
 	}
 
 	@RequestMapping(value = "/photoProduit", produces = MediaType.IMAGE_JPEG_VALUE)

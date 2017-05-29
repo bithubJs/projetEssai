@@ -51,7 +51,7 @@
 				</tr>
 				<tr style="background-color: black; color: white">
 					<td>Suivez votre commande</td>
-					<td>Heures d'ouvertures</td>
+					<td>Horaires d'ouvertures</td>
 					<td>Notre boutique Ebay</td>
 				</tr>
 				<tr style="background-color: black; color: white">

@@ -62,7 +62,7 @@
 			</tr>
 			<tr>
 				<td>Sélectionné</td>
-				<td><form:input path="selectionne" /></td>
+				<td><form:checkbox path="selectionne" /></td>
 				<td><form:errors path="selectionne" cssStyle="color:red" /></td>
 			</tr>
 			<tr>
