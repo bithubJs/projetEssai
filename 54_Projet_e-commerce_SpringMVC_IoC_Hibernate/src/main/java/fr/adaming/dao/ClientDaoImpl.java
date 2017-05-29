@@ -10,8 +10,6 @@ import org.springframework.stereotype.Repository;
 
 import fr.adaming.model.Client;
 import fr.adaming.model.Commande;
-import fr.adaming.model.LigneCommande;
-import fr.adaming.model.Panier;
 
 @Repository
 public class ClientDaoImpl implements IClientDao {
@@ -36,59 +34,79 @@ public class ClientDaoImpl implements IClientDao {
 	public List<Client> getAllClients() {
 
 		s = sf.getCurrentSession();
-		String req_GetAllClients = "FROM Client";
+		String req_GetAllClients = "SELECT cl FROM Client cl";
 		Query query = s.createQuery(req_GetAllClients);
 
 		return query.list();
 	}
 
 	@Override
-	public Commande saveCommande(Panier panier, Client c) {
+	public void addClient(Client c) {
 
 		s = sf.getCurrentSession();
 		s.save(c);
-		Commande commande = new Commande();
-		commande.setClient(c);
-		commande.setListeLignesCommande((List<LigneCommande>) panier.getLigneCommande());
+
+	}
+
+	@Override
+	public Client getClientById(Long id) {
+
+		s = sf.getCurrentSession();
+
+		Client c_rec = (Client) s.get(Client.class, id);
+
+		return c_rec;
+	}
+
+	@Override
+	public void updateClient(Client c) {
+
+		s = sf.getCurrentSession();
+		s.update(c);
+
+	}
+
+	@Override
+	public void deleteClient(Client c) {
+
+		s = sf.getCurrentSession();
+		String req_delete = "DELETE FROM Client c WHERE c.idClient=:pId";
+		Query query = s.createQuery(req_delete);
+		query.setParameter("pId", c.getIdClient());
+		query.executeUpdate();
+
+	}
+
+	@Override
+	public List<Commande> getCommandeByClient(Client client) {
+		s = sf.getCurrentSession();
+		String req_commande = "SELECT co FROM Commande co WHERE co.client.idClient=:pId";
+		Query query = s.createQuery(req_commande);
+		query.setParameter("pId", client.getIdClient());
+
+		return query.list();
+	}
+
+	@Override
+	public Commande saveCommande(Commande commande) {
+		s = sf.getCurrentSession();
 		s.save(commande);
+
 		return commande;
 	}
 
-	// @Override
-	// public void addClient(Client c) {
-	//
-	// s = sf.getCurrentSession();
-	// s.save(c);
-	//
-	// }
-	//
-	// @Override
-	// public Client getClientById(Long id) {
-	//
-	// s = sf.getCurrentSession();
-	//
-	// Client c_rec = (Client) s.get(Client.class, id);
-	//
-	// return c_rec;
-	// }
-	//
-	// @Override
-	// public void updateClient(Client c) {
-	//
-	// s = sf.getCurrentSession();
-	// s.update(c);
-	//
-	// }
-	//
-	// @Override
-	// public void deleteClient(Client c) {
-	//
-	// s = sf.getCurrentSession();
-	// String req_delete = "DELETE FROM Client c WHERE c.idClient=:pId";
-	// Query query = s.createQuery(req_delete);
-	// query.setParameter("pId", c.getIdClient());
-	// query.executeUpdate();
-	//
-	// }
+	@Override
+	public void deleteCommande(Long idCo) {
+		s = sf.getCurrentSession();
+		Commande com_rec = (Commande) s.get(Commande.class, idCo);
+		s.delete(com_rec);
+	}
+
+	@Override
+	public Commande getComandeById(Long idCo) {
+		s = sf.getCurrentSession();
+		Commande com_rec = (Commande) s.get(Commande.class, idCo);
+		return com_rec;
+	}
 
 }

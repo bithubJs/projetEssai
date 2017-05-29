@@ -1,33 +1,17 @@
 package fr.adaming.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import java.io.Serializable;
 
-@Entity
-@Table(name = "lignecommande")
-public class LigneCommande {
+public class LigneCommande implements Serializable {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_lc")
-	private int id;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
+	private Produit produit;
 	private int quantite;
 	private double prix;
-
-	@ManyToOne
-	@JoinColumn(name = "produit_id", referencedColumnName = "id_p")
-	private Produit produit;
-
-	@ManyToOne
-	@JoinColumn(name = "commande_id", referencedColumnName = "id_co")
-	private Commande commande;
 
 	/**
 	 * 
@@ -37,40 +21,29 @@ public class LigneCommande {
 	}
 
 	/**
+	 * @param produit
 	 * @param quantite
-	 * @param prix
 	 */
-	public LigneCommande(int quantite, double prix) {
+	public LigneCommande(Produit produit, int quantite) {
 		super();
+		this.produit = produit;
 		this.quantite = quantite;
-		this.prix = prix;
+		this.prix = produit.getPrix() * quantite;
 	}
 
 	/**
-	 * @param id
-	 * @param quantite
-	 * @param prix
+	 * @return the produit
 	 */
-	public LigneCommande(int id, int quantite, double prix) {
-		super();
-		this.id = id;
-		this.quantite = quantite;
-		this.prix = prix;
+	public Produit getProduit() {
+		return produit;
 	}
 
 	/**
-	 * @return the id
+	 * @param produit
+	 *            the produit to set
 	 */
-	public int getId() {
-		return id;
-	}
-
-	/**
-	 * @param id
-	 *            the id to set
-	 */
-	public void setId(int id) {
-		this.id = id;
+	public void setProduit(Produit produit) {
+		this.produit = produit;
 	}
 
 	/**
@@ -103,36 +76,6 @@ public class LigneCommande {
 		this.prix = prix;
 	}
 
-	/**
-	 * @return the produit
-	 */
-	public Produit getProduit() {
-		return produit;
-	}
-
-	/**
-	 * @param produit
-	 *            the produit to set
-	 */
-	public void setProduit(Produit produit) {
-		this.produit = produit;
-	}
-
-	/**
-	 * @return the commande
-	 */
-	public Commande getCommande() {
-		return commande;
-	}
-
-	/**
-	 * @param commande
-	 *            the commande to set
-	 */
-	public void setCommande(Commande commande) {
-		this.commande = commande;
-	}
-
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -140,7 +83,7 @@ public class LigneCommande {
 	 */
 	@Override
 	public String toString() {
-		return "LigneCommande [id=" + id + ", quantite=" + quantite + ", prix=" + prix + "]";
+		return "LigneCommande [produit=" + produit + ", quantite=" + quantite + ", prix=" + prix + "]";
 	}
 
 }

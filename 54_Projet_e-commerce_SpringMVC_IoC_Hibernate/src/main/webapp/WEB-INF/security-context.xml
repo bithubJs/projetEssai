@@ -19,38 +19,24 @@
 
 	<!-- Partie url protegee et autorisation -->
 	<security:http>
-		<!-- url protegees et les authorisation -->
-		<!-- <security:intercept-url pattern="/categories/listeCategoriesAdmin/**" -->
-		<!-- access="ROLE_ADMIN_CAT" requires-channel="https" /> -->
-
 		<security:intercept-url pattern="/categories/**"
-			access="ROLE_ADMIN_CAT" requires-channel="https" />
-
-		<!-- <security:intercept-url pattern="/produits/listeProduitsAdmin/**" -->
-		<!-- access="ROLE_ADMIN_PRO" requires-channel="https" /> -->
+			access="ROLE_ADMIN_CAT" />
 
 		<security:intercept-url pattern="/produits/**"
-			access="ROLE_ADMIN_PRO" requires-channel="https" />
+			access="ROLE_ADMIN_PROD,ROLE_ADMIN_CAT" />
 
-		<!-- Utiliser un formulaire perso -->
 		<security:form-login login-page="/login"
 			authentication-failure-url="/loginEchec" />
 
-		<!-- pour la deconnection -->
 		<security:logout logout-success-url="/logout" />
 
-		<!-- Pour les accès non authorisés -->
 		<security:access-denied-handler
 			error-page="/denied" />
 
 	</security:http>
 
-	<!-- Partie de l'authentification -->
 	<security:authentication-manager>
 		<security:authentication-provider>
-
-			<!-- Utilisation de la base de données pour récup l'identifiant, password, 
-				role -->
 
 			<security:jdbc-user-service
 				data-source-ref="dataSourceBeanS"

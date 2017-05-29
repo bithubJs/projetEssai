@@ -1,9 +1,8 @@
 package fr.adaming.model;
 
 import java.io.Serializable;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Panier implements Serializable {
 
@@ -12,60 +11,79 @@ public class Panier implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private Map<Long, LigneCommande> items = new HashMap<Long, LigneCommande>();
+	private List<LigneCommande> listeCommandeP = new ArrayList<LigneCommande>();
+	private double total;
 
-	public void addProduitPanier(Produit p, int quantite) {
-		LigneCommande lc = items.get(p.getIdProduit());
-		if (lc == null) {
-			LigneCommande lc1 = new LigneCommande();
-			lc1.setProduit(p);
-			lc1.setQuantite(quantite);
-			lc1.setPrix(p.getPrix());
-			items.put(p.getIdProduit(), lc1);
-		} else {
-			lc.setQuantite(lc.getQuantite() + quantite);
+	/**
+	 * 
+	 */
+	public Panier() {
+		super();
+	}
+
+	/**
+	 * @param listeCommandeP
+	 * @param total
+	 */
+	public Panier(List<LigneCommande> listeCommandeP, double total) {
+		super();
+		this.listeCommandeP = listeCommandeP;
+		this.total = total;
+	}
+
+	/**
+	 * @return the listeCommandeP
+	 */
+	public List<LigneCommande> getListeCommandeP() {
+		return listeCommandeP;
+	}
+
+	/**
+	 * @param listeCommandeP
+	 *            the listeCommandeP to set
+	 */
+	public void setListeCommandeP(List<LigneCommande> listeCommandeP) {
+		this.listeCommandeP = listeCommandeP;
+
+		total = 0;
+		for (LigneCommande lc : listeCommandeP) {
+			total += lc.getPrix();
 		}
 	}
 
-	public Collection<LigneCommande> getLigneCommande() {
-		return items.values();
-	}
-
-	public int getSize() {
-		int p = 0;
-		Collection<LigneCommande> items = getLigneCommande();
-		for (LigneCommande lc : items) {
-			p += lc.getQuantite();
-		}
-		return p;
-	}
-
+	/**
+	 * @return the total
+	 */
 	public double getTotal() {
-		double total = 0;
-		Collection<LigneCommande> items = getLigneCommande();
-		for (LigneCommande lc : items) {
-			total += lc.getQuantite() * lc.getProduit().getPrix();
-		}
 		return total;
 	}
 
-	public void deleteItem(Long idproduit) {
-		items.remove(idproduit);
-	}
-
 	/**
-	 * @return the items
+	 * @param total
+	 *            the total to set
 	 */
-	public Map<Long, LigneCommande> getItems() {
-		return items;
+	public void setTotal(double total) {
+		this.total = total;
 	}
 
-	/**
-	 * @param items
-	 *            the items to set
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#toString()
 	 */
-	public void setItems(Map<Long, LigneCommande> items) {
-		this.items = items;
+	@Override
+	public String toString() {
+		return "Panier [listeCommandeP=" + listeCommandeP + ", total=" + total + "]";
 	}
 
+	// Others Method
+
+	public void addLigneCommande(LigneCommande lc) {
+		listeCommandeP.add(lc);
+
+		total = 0;
+		for (LigneCommande lc1 : listeCommandeP) {
+			total += lc1.getPrix();
+		}
+	}
 }

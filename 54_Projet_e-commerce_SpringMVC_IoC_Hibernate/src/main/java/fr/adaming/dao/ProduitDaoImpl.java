@@ -74,7 +74,7 @@ public class ProduitDaoImpl implements IProduitDao {
 
 	@Override
 	public void addProduit(Produit p) {
-
+		System.out.println(p.toString());
 		s = sf.getCurrentSession();
 		s.save(p);
 

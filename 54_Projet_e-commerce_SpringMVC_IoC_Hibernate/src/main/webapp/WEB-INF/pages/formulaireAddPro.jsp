@@ -66,6 +66,12 @@
 				<td><form:errors path="selectionne" cssStyle="color:red" /></td>
 			</tr>
 			<tr>
+				<td>Catégorie</td>
+				<td><form:select path="categorie.idCategorie" multiple="false"
+						items="${categoriesListe}" itemLabel="nomCategorie"
+						itemValue="idCategorie" /></td>
+			</tr>
+			<tr>
 				<td>Photo</td>
 				<td><input type="file" name="file"></td>
 			</tr>

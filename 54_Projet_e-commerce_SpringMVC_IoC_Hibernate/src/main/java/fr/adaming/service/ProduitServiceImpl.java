@@ -42,7 +42,6 @@ public class ProduitServiceImpl implements IProduitService {
 
 	@Override
 	public void addProduit(Produit p) {
-
 		pDao.addProduit(p);
 	}
 

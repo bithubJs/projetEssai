@@ -9,6 +9,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -148,7 +150,8 @@ public class User implements Serializable {
 	 */
 	@Override
 	public String toString() {
-		return "User [id=" + idUser + ", username=" + username + ", password=" + password + ", actived=" + actived + "]";
+		return "User [id=" + idUser + ", username=" + username + ", password=" + password + ", actived=" + actived
+				+ "]";
 	}
 
 }

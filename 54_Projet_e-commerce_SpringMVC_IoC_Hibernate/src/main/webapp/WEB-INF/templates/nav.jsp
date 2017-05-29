@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,20 +24,27 @@
 				</button>
 				<a class="navbar-brand"
 					href="${pageContext.request.contextPath}/sith-e-commerce/accueil">Accueil</a>
-				<a class="navbar-brand"
-					href="${pageContext.request.contextPath}/sith-e-commerce/afficherCategories">Catégories</a>
-				<a class="navbar-brand"
-					href="${pageContext.request.contextPath}/sith-e-commerce/afficherProduits">Produits</a>
 			</div>
+			<form class="navbar-form navbar-left">
+				<div class="form-group">
+					<input type="text" name="m" value="${m}" class="form-control"
+						placeholder="Search a product">
+				</div>
+				<button type="submit" class="btn btn-default">Submit</button>
+			</form>
+			<a class="navbar-brand"
+				href="${pageContext.request.contextPath}/sith-e-commerce/panier">Panier</a>
 			<ul class="nav navbar-nav navbar-right">
 				<li><a
-					href="${pageContext.request.contextPath}/categories/listeCategoriesAdmin">Connexion
-						Admin Catégories</a></li>
+					href="${pageContext.request.contextPath}/categories/listeCategoriesAdmin">Admin
+						Catégories</a></li>
 				<li><a
-					href="${pageContext.request.contextPath}/produits/listeProduitsAdmin">Connexion
+					href="${pageContext.request.contextPath}/produits/listeProduitsAdmin">
 						Admin Produits</a></li>
 				<li><a href="${pageContext.request.contextPath}/login">Connexion</a></li>
-				<li><a href="<c:url value="/j_spring_security_logout"/>">Logout</a></li>
+
+				<li><a
+					href="<c:url value="${pageContext.request.contextPath}/j_spring_security_logout"/>">Logout</a></li>
 			</ul>
 		</div>
 	</nav>

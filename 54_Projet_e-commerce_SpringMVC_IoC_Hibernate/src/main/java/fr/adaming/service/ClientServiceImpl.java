@@ -25,33 +25,51 @@ public class ClientServiceImpl implements IClientService {
 	}
 
 	@Override
-	public Commande saveCommande(Panier panier, Client c) {
+	public void addClient(Client c) {
 
-		return cDao.saveCommande(panier, c);
+		cDao.addClient(c);
 	}
 
-	// @Override
-	// public void addClient(Client c) {
-	//
-	// cDao.addClient(c);
-	// }
+	@Override
+	public Client getClientById(Long id) {
 
-	// @Override
-	// public Client getClientById(Long id) {
-	//
-	// return cDao.getClientById(id);
-	// }
-	//
-	// @Override
-	// public void updateClient(Client c) {
-	//
-	// cDao.updateClient(c);
-	// }
-	//
-	// @Override
-	// public void deleteClient(Client c) {
-	//
-	// cDao.deleteClient(c);
-	// }
+		return cDao.getClientById(id);
+	}
+
+	@Override
+	public void updateClient(Client c) {
+
+		cDao.updateClient(c);
+	}
+
+	@Override
+	public void deleteClient(Client c) {
+
+		cDao.deleteClient(c);
+	}
+
+	@Override
+	public List<Commande> getCommandeByClient(Client client) {
+
+		return cDao.getCommandeByClient(client);
+	}
+
+	@Override
+	public Commande saveCommande(Commande commande) {
+
+		return cDao.saveCommande(commande);
+	}
+
+	@Override
+	public void deleteCommande(Long idCo) {
+		cDao.deleteCommande(idCo);
+
+	}
+
+	@Override
+	public Commande getComandeById(Long idCo) {
+
+		return cDao.getComandeById(idCo);
+	}
 
 }

@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import fr.adaming.model.Categorie;
 import fr.adaming.model.Produit;
+import fr.adaming.service.ICategorieService;
 import fr.adaming.service.IProduitService;
 
 @Controller
@@ -24,6 +26,17 @@ public class ProduitController {
 
 	@Autowired
 	private IProduitService produitService;
+
+	@Autowired
+	private ICategorieService categorieService;
+
+	/**
+	 * @param categorieService
+	 *            the categorieService to set
+	 */
+	public void setCategorieService(ICategorieService categorieService) {
+		this.categorieService = categorieService;
+	}
 
 	/**
 	 * @param produitService
@@ -35,7 +48,6 @@ public class ProduitController {
 
 	@RequestMapping(value = "/listeProduitsAdmin", method = RequestMethod.GET)
 	public String afficherListeProduits(ModelMap model) {
-
 		List<Produit> listeProduits = produitService.getAllProduits();
 		model.addAttribute("produitsListe", listeProduits);
 
@@ -43,8 +55,9 @@ public class ProduitController {
 	}
 
 	@RequestMapping(value = "/formulaireAddPro", method = RequestMethod.GET)
-	public ModelAndView formulaireAjoutPro() {
-
+	public ModelAndView formulaireAjoutPro(ModelMap model) {
+		List<Categorie> listeCategories = categorieService.getAllCategories();
+		model.addAttribute("categoriesListe", listeCategories);
 		return new ModelAndView("formulaireAddPro", "mProduit", new Produit());
 	}
 

@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
 
 <!DOCTYPE html>
 
@@ -26,103 +29,47 @@
 <body>
 	<%@ include file="/WEB-INF/templates/header.jsp"%>
 	<%@ include file="/WEB-INF/templates/nav.jsp"%>
-	<div>
-		<h1 style="color: red; text-align: center">${msg1}</h1>
-		<h1 style="color: red; text-align: center">${msg2}</h1>
-		<br />
 
 
-		<div>
-			<form action="produitsByKW">
-				<table>
-					<tr>
-						<td><input type="text" name="m" value="${m}"></td>
-						<td><input type="submit" value="Rechercher un produit"></td>
-					</tr>
-				</table>
-			</form>
-		</div>
 
-		<br />
+	<br />
 
-		<div align="center">
-			<table class="table table-hover">
-				<c:forEach items="${categories}" var="cat">
-					<tr>
-						<td><a
-							href="${pageContext.request.contextPath}/sith-e-commerce/produitsByCat?idCat=${cat.idCategorie}">
-								${cat.nomCategorie} </a></td>
-					</tr>
-				</c:forEach>
-			</table>
 
-			<div>
-				<c:if test="${panier.size!=0}">
-					<table>
-						<tr>
-							<th>ID</th>
-							<th>Désignation</th>
-							<th>Prix</th>
-							<th>Quantité</th>
-							<th>Montant</th>
-						</tr>
-						<c:forEach items="${panier.items}" var="items">
-							<tr>
-								<td>${items.produit.idProduit}</td>
-								<td>${items.produit.designation}</td>
-								<td>${items.produit.prix}</td>
-								<td>${items.quantite}</td>
-								<td>${items.quantite*items.produit.prix}</td>
-							</tr>
-						</c:forEach>
-						<tr>
-							<td colspan="4">Total</td>
-							<td>${panier.total}</td>
-						</tr>
-					</table>
-				</c:if>
-			</div>
+	<div class="dropdown">
+		<button class="btn btn-default dropdown-toggle" type="button"
+			id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true"
+			aria-expanded="true">
+			SELECTIONNE UNE CATEGORIE <span class="caret"></span>
+		</button>
+		<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+			<c:forEach items="${categoriesListe}" var="cat">
+				<li><a
+					href="${pageContext.request.contextPath}/sith-e-commerce/produitsByCat/${cat.idCategorie}">${cat.nomCategorie}
+				</a></li>
+			</c:forEach>
+		</ul>
+	</div>
 
-			<div>
-				<c:forEach items="${produitsListe}" var="produit">
-					<div>
-						<table>
-							<tr>
-								<td colspan="2"><img alt=""
-									src="photoProduit?idP=${produit.idProduit}"></td>
-							</tr>
-							<tr>
-								<td>Désignation</td>
-								<td>${produit.designation}</td>
-							</tr>
-							<tr>
-								<td>Prix</td>
-								<td>${produit.prix}</td>
-							</tr>
-							<tr>
-								<td>Quantité</td>
-								<td>${produit.quantite}</td>
-							</tr>
-							<tr>
-								<td>Description</td>
-								<td>${produit.description}</td>
-							</tr>
-							<tr>
-								<td colspan="2">
-									<form action="ajouterPanier">
-										<input type="hidden" value="${produit.idProduit}"
-											name="idProduit"> <input type="text" value="1"
-											name="quantite"> <input type="submit"
-											value="Ajouter au panier">
-									</form>
-								<td>
-							</tr>
-						</table>
-					</div>
 
-				</c:forEach>
-			</div>
-		</div>
+	<div align="center">
+		<table class="table table-hover">
+			<tr style="background-color: grey; color: white; text-align: center;">
+				<th>Designation des produits</th>
+				<th>Description des produits</th>
+				<th>Prix</th>
+				<th>Quantité</th>
+				<th>Photo</th>
+
+			</tr>
+			<c:forEach var="produit" items="${produitsListe}">
+				<tr>
+					<td>${produit.description}</td>
+					<td>${produit.designation}</td>
+					<td>${produit.prix}</td>
+					<td>${produit.quantite}</td>
+					<td><img src="photoProduit?proId=${produit.idProduit}"></td>
+			</c:forEach>
+		</table>
 	</div>
 
 	<%@ include file="/WEB-INF/templates/footer.jsp"%>

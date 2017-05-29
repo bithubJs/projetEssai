@@ -192,6 +192,23 @@ public class Produit implements Serializable {
 		this.photo = photo;
 	}
 
+	/**
+	 * @return the categorie
+	 */
+	public Categorie getCategorie() {
+		System.out.println(categorie);
+		return categorie;
+	}
+
+	/**
+	 * @param categorie
+	 *            the categorie to set
+	 */
+	public void setCategorie(Categorie categorie) {
+		System.out.println(categorie);
+		this.categorie = categorie;
+	}
+
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -201,7 +218,7 @@ public class Produit implements Serializable {
 	public String toString() {
 		return "Produit [idProduit=" + idProduit + ", description=" + description + ", designation=" + designation
 				+ ", prix=" + prix + ", quantite=" + quantite + ", selectionne=" + selectionne + ", photo="
-				+ Arrays.toString(photo) + "]";
+				+ Arrays.toString(photo) + "categorie=" + categorie.toString() + "]";
 	}
 
 }

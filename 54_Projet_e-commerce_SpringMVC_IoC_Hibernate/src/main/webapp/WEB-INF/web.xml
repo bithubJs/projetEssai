@@ -35,7 +35,6 @@
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 
-
 	<servlet-mapping>
 		<servlet-name>uniqueServlet</servlet-name>
 		<url-pattern>*.jpg</url-pattern>
@@ -45,8 +44,6 @@
 		<servlet-name>uniqueServlet</servlet-name>
 		<url-pattern>*.png</url-pattern>
 	</servlet-mapping>
-
-
 
 	<!-- Declaration du filtre de servlet pour spring security -->
 	<filter>

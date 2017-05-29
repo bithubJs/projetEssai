@@ -1,9 +1,7 @@
 package fr.adaming.model;
 
 import java.util.Calendar;
-import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,7 +9,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -28,8 +25,7 @@ public class Commande {
 	@Temporal(TemporalType.DATE)
 	private Calendar dateCommande;
 
-	@OneToMany(mappedBy = "commande", cascade = CascadeType.REMOVE)
-	private List<LigneCommande> listeLignesCommande;
+	private double prixCommande;
 
 	@ManyToOne
 	@JoinColumn(name = "client_id", referencedColumnName = "id_cl")
@@ -91,21 +87,6 @@ public class Commande {
 	}
 
 	/**
-	 * @return the listeLignesCommande
-	 */
-	public List<LigneCommande> getListeLignesCommande() {
-		return listeLignesCommande;
-	}
-
-	/**
-	 * @param listeLignesCommande
-	 *            the listeLignesCommande to set
-	 */
-	public void setListeLignesCommande(List<LigneCommande> listeLignesCommande) {
-		this.listeLignesCommande = listeLignesCommande;
-	}
-
-	/**
 	 * @return the client
 	 */
 	public Client getClient() {
@@ -118,6 +99,21 @@ public class Commande {
 	 */
 	public void setClient(Client client) {
 		this.client = client;
+	}
+
+	/**
+	 * @return the prixCommande
+	 */
+	public double getPrixCommande() {
+		return prixCommande;
+	}
+
+	/**
+	 * @param prixCommande
+	 *            the prixCommande to set
+	 */
+	public void setPrixCommande(double prixCommande) {
+		this.prixCommande = prixCommande;
 	}
 
 	/*
