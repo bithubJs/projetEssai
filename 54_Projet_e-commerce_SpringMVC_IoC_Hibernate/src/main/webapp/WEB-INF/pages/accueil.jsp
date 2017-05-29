@@ -26,8 +26,7 @@
 <body>
 	<%@ include file="/WEB-INF/templates/header.jsp"%>
 	<%@ include file="/WEB-INF/templates/nav.jsp"%>
-	<div
-		style="background-image:url(<c:url value='/resources/images/background7.jpg' />)">
+	<div>
 		<h1 style="color: red; text-align: center">${msg1}</h1>
 		<h1 style="color: red; text-align: center">${msg2}</h1>
 		<br />
@@ -124,7 +123,9 @@
 				</c:forEach>
 			</div>
 		</div>
-		<%@ include file="/WEB-INF/templates/footer.jsp"%>
+	</div>
+
+	<%@ include file="/WEB-INF/templates/footer.jsp"%>
 </body>
 </html>
 

@@ -20,8 +20,14 @@
 	<!-- Partie url protegee et autorisation -->
 	<security:http>
 		<!-- url protegees et les authorisation -->
-		<security:intercept-url pattern="/**"
+		<!-- <security:intercept-url pattern="/categories/listeCategoriesAdmin/**" -->
+		<!-- access="ROLE_ADMIN_CAT" requires-channel="https" /> -->
+
+		<security:intercept-url pattern="/categories/**"
 			access="ROLE_ADMIN_CAT" requires-channel="https" />
+
+		<!-- <security:intercept-url pattern="/produits/listeProduitsAdmin/**" -->
+		<!-- access="ROLE_ADMIN_PRO" requires-channel="https" /> -->
 
 		<security:intercept-url pattern="/produits/**"
 			access="ROLE_ADMIN_PRO" requires-channel="https" />

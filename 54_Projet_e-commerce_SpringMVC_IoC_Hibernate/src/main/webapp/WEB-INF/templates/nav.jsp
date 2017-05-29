@@ -35,6 +35,7 @@
 				<li><a
 					href="${pageContext.request.contextPath}/produits/listeProduitsAdmin">Connexion
 						Admin Produits</a></li>
+				<li><a href="${pageContext.request.contextPath}/login">Connexion</a></li>
 				<li><a href="<c:url value="/j_spring_security_logout"/>">Logout</a></li>
 			</ul>
 		</div>
