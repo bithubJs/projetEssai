@@ -31,23 +31,22 @@
 	<%@ include file="/WEB-INF/templates/nav.jsp"%>
 	<br />
 	<div class="row">
+		<c:forEach items="${categoriesListe}" var="cat">
 		<div class="col-sm-6 col-md-4">
 			<div class="thumbnail">
-				<img src="<c:url value="/resources/images/fitness.jpg" />"
-					alt="fitness">
+				<img src="photoCategorie?catId=${cat.idCategorie}"
+					alt="${cat.nomCategorie}">
 				<div class="caption">
-					<h3>Fitness</h3>
-					<p>Tout ce dont vous avez besoin pour muscler votre corps,
-						transformer votre nutella en tablette de chocolat, et pouvoir
-						ensuite facilement draguer une fille comme elle &#128521;</p>
+					<h3>${cat.nomCategorie }</h3>
+					<p>${cat.description}</p>
 					<p>
-						<a href="#" class="btn btn-primary" role="button">Aller voir</a>
+						<a href="${pageContext.request.contextPath}/sith-e-commerce/produitsByCat/${cat.idCategorie}" class="btn btn-primary" role="button">Aller voir</a>
 					</p>
 				</div>
 			</div>
 		</div>
 
-		<div class="col-sm-6 col-md-4">
+		<!-- <div class="col-sm-6 col-md-4">
 			<div class="thumbnail">
 				<img src="<c:url value="/resources/images/hightech.jpg" />"
 					alt="hightech">
@@ -115,7 +114,8 @@
 					</p>
 				</div>
 			</div>
-		</div>
+		</div>-->
+		</c:forEach>
 	</div>
 
 
@@ -173,8 +173,9 @@
 				</tr>
 			</c:forEach>
 		</table>
+	</div>
 
-		<%@ include file="/WEB-INF/templates/footer.jsp"%>
+	<%@ include file="/WEB-INF/templates/footer.jsp"%>
 </body>
 </html>
 

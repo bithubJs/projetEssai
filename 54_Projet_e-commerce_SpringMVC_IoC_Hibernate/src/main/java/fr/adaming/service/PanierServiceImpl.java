@@ -1,5 +1,6 @@
 package fr.adaming.service;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -22,8 +23,9 @@ public class PanierServiceImpl implements IPanierService {
 
 	@Override
 	public void deleteCommande(Long id) {
-		listeCommandeP.getListeCommandeP().remove(id);
-
+		int iid = new BigDecimal(id.longValue()).intValueExact();
+		;
+		listeCommandeP.getListeCommandeP().remove(iid);
 	}
 
 	@Override

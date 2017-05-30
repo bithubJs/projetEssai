@@ -58,10 +58,12 @@
 							class="btn btn-warning btn-simple btn-xs"
 							onclick="location.href='${pageContext.request.contextPath}/sith-e-commerce/panier/q-?Id=${pListe.indexOf(panier)}'">
 							<i class="material-icons">-</i>
-						</button> <!-- <button type="button" title="Delete" --> <!-- 							class="btn btn-danger btn-simple btn-xs" -->
-						<%-- 							onclick="location.href='${pageContext.request.contextPath}/sith-e-commerce/panier/delete?Id=${pListe.indexOf(panier)}'"> --%>
-						<!-- 							<i class="material-icons">Supprimer du panier</i> -->
-						<!-- 						</button> -->
+						</button> 
+						<button type="button" title="Delete"
+							class="btn btn-danger btn-simple btn-xs"
+							onclick="location.href='${pageContext.request.contextPath}/sith-e-commerce/panier/delete?Id=${pListe.indexOf(panier)}'">
+							<i class="material-icons">Supprimer du panier</i>
+						</button>
 					</td>
 
 

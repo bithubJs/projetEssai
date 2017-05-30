@@ -125,6 +125,8 @@ public class SithECommerceController {
 
 	@RequestMapping(value = "/produitsByKW")
 	public String produitByKW(@RequestParam String m, ModelMap model) {
+		System.out.println(m);
+		System.out.println(produitService.getProduitsByKeyWord(m));
 		model.addAttribute("m", m);
 		model.addAttribute("categoriesListe", categorieService.getAllCategories());
 		model.addAttribute("produitsListe", produitService.getProduitsByKeyWord(m));
@@ -165,17 +167,19 @@ public class SithECommerceController {
 
 	@RequestMapping(value = "/panier/add/{idP}", method = RequestMethod.GET)
 	public String ajouterItems(ModelMap model, @PathVariable("idP") Long pId, @RequestParam("qt") int quantite) {
-		LigneCommande lc = new LigneCommande(produitService.getProduitById(pId), quantite);
+		Produit produit = produitService.getProduitById(pId);
+		LigneCommande lc = new LigneCommande(produit, quantite);
 		panierService.addCommande(lc);
 		model.addAttribute("pListe", panierService.getCommande());
 		return "panier";
 	}
 
-	// @RequestMapping(value = "/panier/delete", method = RequestMethod.GET)
-	// public ModelAndView deleteItems(@RequestParam("Id") Long id) {
-	// panierService.deleteCommande(id);
-	// return new ModelAndView("panier", "pListe", panierService.getCommande());
-	// }
+	@RequestMapping(value = "/panier/delete", method = RequestMethod.GET)
+	public ModelAndView deleteItems(@RequestParam("Id") Long id) {
+		System.out.println("Id " + id.toString());
+		panierService.deleteCommande(id);
+		return new ModelAndView("panier", "pListe", panierService.getCommande());
+	}
 
 	@RequestMapping(value = "/panier/q+", method = RequestMethod.GET)
 	public ModelAndView addArticleQuantite(@RequestParam("Id") int id) {

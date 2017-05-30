@@ -57,8 +57,8 @@
 			</tr>
 			<tr>
 				<td>Quantité</td>
-				<td><form:input path="prix" /></td>
-				<td><form:errors path="prix" cssStyle="color:red" /></td>
+				<td><form:input path="quantite" /></td>
+				<td><form:errors path="quantite" cssStyle="color:red" /></td>
 			</tr>
 			<tr>
 				<td>Sélectionné</td>

@@ -25,7 +25,8 @@
 				<a class="navbar-brand"
 					href="${pageContext.request.contextPath}/sith-e-commerce/accueil">Accueil</a>
 			</div>
-			<form class="navbar-form navbar-left">
+			<form class="navbar-form navbar-left" method="GET"
+				action="${pageContext.request.contextPath}/sith-e-commerce/produitsByKW">
 				<div class="form-group">
 					<input type="text" name="m" value="${m}" class="form-control"
 						placeholder="Search a product">
