@@ -32,14 +32,14 @@
 			method="post">
 			<div class="form-group">
 				<label for="inputEmail3" class="col-sm-2 control-label">Login</label>
-				<div class="col-sm-10">
+				<div class="col-sm-1">
 					<input type="text" name="j_username" class="form-control"
 						id="inputEmail3" placeholder="Login">
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="inputPassword3" class="col-sm-2 control-label">Password</label>
-				<div class="col-sm-10">
+				<div class="col-sm-1">
 					<input type="password" name="j_password" class="form-control"
 						id="inputPassword3" placeholder="Password">
 				</div>

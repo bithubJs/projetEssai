@@ -15,7 +15,7 @@
 
 	<div>
 		<img style="width: 100%"
-			src="<c:url value="/resources/images/header.jpg" />"
+			src="<c:url value="/resources/images/header3.jpg" />"
 			onclick="${pageContext.request.contextPath}/sith-e-commerce/accueil.jsp" />
 	</div>
 

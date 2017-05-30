@@ -28,8 +28,8 @@
 	<%@ include file="/WEB-INF/templates/header.jsp"%>
 	<%@ include file="/WEB-INF/templates/nav.jsp"%>
 
-	<a href="${pageContext.request.contextPath}/produits/formulaireAddPro">Ajouter
-		un produit</a>
+	<a href="${pageContext.request.contextPath}/produits/formulaireAddPro"
+		class="btn btn-danger" role="button">Ajouter un produit</a>
 
 	<br />
 

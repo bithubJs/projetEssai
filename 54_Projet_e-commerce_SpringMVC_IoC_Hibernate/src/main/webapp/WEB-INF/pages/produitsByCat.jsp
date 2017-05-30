@@ -46,7 +46,7 @@
 					<td>${produit.prix}</td>
 					<td>${produit.quantite}</td>
 					<td>${produit.selectionne}</td>
-					<td><img src="photoProduit?idP=${produit.idProduit}"></td>
+					<td><img src="${pageContext.request.contextPath}/sith-e-commerce/photoProduit?idP=${produit.idProduit}"></td>
 				</tr>
 			</c:forEach>
 		</table>

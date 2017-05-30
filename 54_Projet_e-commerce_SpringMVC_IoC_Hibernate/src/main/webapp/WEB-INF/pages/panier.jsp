@@ -39,6 +39,7 @@
 				<th>Quantité</th>
 				<th>Photo</th>
 				<th>Quantité</th>
+				<th>Action</th>
 
 			</tr>
 			<c:forEach var="panier" items="${pListe}">
@@ -47,10 +48,12 @@
 					<td>${panier.produit.designation}</td>
 					<td>${(panier.produit.prix*panier.quantite)}</td>
 					<td>${panier.quantite}</td>
-					<td><img src="photoProduit?proId=${produit.idProduit}">
+
+					<td><img
+						src="${pageContext.request.contextPath}/sith-e-commerce/photoProduit?proId=${produit.idProduit}">
 					<td class="text-right">
 						<button type="button" title="Add"
-							class="btn btn-info btn-simple btn-xs"
+							class="btn btn-success btn-simple btn-xs"
 							onclick="location.href='${pageContext.request.contextPath}/sith-e-commerce/panier/q+?Id=${pListe.indexOf(panier)}'">
 							<i class="material-icons">+</i>
 						</button>
@@ -58,7 +61,7 @@
 							class="btn btn-warning btn-simple btn-xs"
 							onclick="location.href='${pageContext.request.contextPath}/sith-e-commerce/panier/q-?Id=${pListe.indexOf(panier)}'">
 							<i class="material-icons">-</i>
-						</button> 
+						</button>
 						<button type="button" title="Delete"
 							class="btn btn-danger btn-simple btn-xs"
 							onclick="location.href='${pageContext.request.contextPath}/sith-e-commerce/panier/delete?Id=${pListe.indexOf(panier)}'">

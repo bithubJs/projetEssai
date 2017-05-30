@@ -30,23 +30,43 @@
 	<%@ include file="/WEB-INF/templates/header.jsp"%>
 	<%@ include file="/WEB-INF/templates/nav.jsp"%>
 	<br />
+
+	<div class="dropdown">
+		<button class="btn btn-danger dropdown-toggle" type="button"
+			id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true"
+			aria-expanded="true">
+			SELECTIONNE UNE CATEGORIE <span class="caret"></span>
+		</button>
+		<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+			<c:forEach items="${categoriesListe}" var="cat">
+				<li><a
+					href="${pageContext.request.contextPath}/sith-e-commerce/produitsByCat/${cat.idCategorie}">${cat.nomCategorie}
+				</a></li>
+			</c:forEach>
+		</ul>
+	</div>
+	<br />
+
 	<div class="row">
 		<c:forEach items="${categoriesListe}" var="cat">
-		<div class="col-sm-6 col-md-4">
-			<div class="thumbnail">
-				<img src="photoCategorie?catId=${cat.idCategorie}"
-					alt="${cat.nomCategorie}">
-				<div class="caption">
-					<h3>${cat.nomCategorie }</h3>
-					<p>${cat.description}</p>
-					<p>
-						<a href="${pageContext.request.contextPath}/sith-e-commerce/produitsByCat/${cat.idCategorie}" class="btn btn-primary" role="button">Aller voir</a>
-					</p>
+			<div class="col-sm-6 col-md-4">
+				<div class="thumbnail">
+					<img style="max-height: 250px"
+						src="${pageContext.request.contextPath}/sith-e-commerce/photoCategorie?catId=${cat.idCategorie}"
+						alt="${cat.nomCategorie}">
+					<div class="caption">
+						<h3>${cat.nomCategorie }</h3>
+						<p>${cat.description}</p>
+						<p>
+							<a
+								href="${pageContext.request.contextPath}/sith-e-commerce/produitsByCat/${cat.idCategorie}"
+								class="btn btn-danger" role="button">Aller voir</a>
+						</p>
+					</div>
 				</div>
 			</div>
-		</div>
 
-		<!-- <div class="col-sm-6 col-md-4">
+			<!-- <div class="col-sm-6 col-md-4">
 			<div class="thumbnail">
 				<img src="<c:url value="/resources/images/hightech.jpg" />"
 					alt="hightech">
@@ -120,20 +140,7 @@
 
 
 
-	<div class="dropdown">
-		<button class="btn btn-default dropdown-toggle" type="button"
-			id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true"
-			aria-expanded="true">
-			SELECTIONNE UNE CATEGORIE <span class="caret"></span>
-		</button>
-		<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-			<c:forEach items="${categoriesListe}" var="cat">
-				<li><a
-					href="${pageContext.request.contextPath}/sith-e-commerce/produitsByCat/${cat.idCategorie}">${cat.nomCategorie}
-				</a></li>
-			</c:forEach>
-		</ul>
-	</div>
+
 
 
 	<div align="center">
@@ -144,6 +151,7 @@
 				<th>Prix</th>
 				<th>Quantité</th>
 				<th>Photo</th>
+				<th>Panier</th>
 
 			</tr>
 			<c:forEach var="produit" items="${produitsListe}">
@@ -152,7 +160,9 @@
 					<td>${produit.designation}</td>
 					<td>${produit.prix}</td>
 					<td>${produit.quantite}</td>
-					<td><img src="photoProduit?proId=${produit.idProduit}"></td>
+					<td><img style="max-height: 250px"
+						src="
+						${pageContext.request.contextPath}/sith-e-commerce/photoProduit?proId=${produit.idProduit}"></td>
 
 					<td class="text-right">
 						<form
@@ -164,7 +174,7 @@
 							</div>
 
 							<button type="submit" title="Edit"
-								class="btn btn-success btn-simple btn-xs">
+								class="btn btn-default btn-simple btn-xs">
 								<i class="material-icons">Ajouter au panier</i>
 							</button>
 						</form>

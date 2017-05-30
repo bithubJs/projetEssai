@@ -27,8 +27,9 @@
 	<%@ include file="/WEB-INF/templates/header.jsp"%>
 	<%@ include file="/WEB-INF/templates/nav.jsp"%>
 
-	<a href="${pageContext.request.contextPath}/categories/formulaireAdd">Ajouter
-		une catégorie</a>
+	<a href="${pageContext.request.contextPath}/categories/formulaireAdd"
+		class="btn btn-danger" role="button">Ajouter une catégorie</a>
+
 
 	<br />
 
@@ -43,7 +44,8 @@
 			<c:forEach var="categorie" items="${categoriesListe}">
 				<tr>
 					<td>${categorie.nomCategorie}</td>
-					<td><img src="photoCategorie?catId=${categorie.idCategorie}"></td>
+					<td><img
+						src="${pageContext.request.contextPath}/categories/photoCategorie?catId=${categorie.idCategorie}"></td>
 					<td>${categorie.description}</td>
 					<td><a
 						href="${pageContext.request.contextPath}/categories/deleteCategorie/${categorie.idCategorie}">Supprimer</a>

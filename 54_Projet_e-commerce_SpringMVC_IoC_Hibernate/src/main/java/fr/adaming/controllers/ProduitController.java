@@ -100,14 +100,13 @@ public class ProduitController {
 	@RequestMapping(value = "/photoProduit", produces = MediaType.IMAGE_JPEG_VALUE)
 	@ResponseBody
 	public byte[] getPhoto(Long proId) throws IOException {
-
+		System.out.println("Id photo: " +proId.toString() );
 		Produit pro_rec = produitService.getProduitById(proId);
-
+		System.out.println(pro_rec.toString());
 		if (pro_rec.getPhoto() == null) {
 			return new byte[0];
 		} else {
 			return IOUtils.toByteArray(new ByteArrayInputStream(pro_rec.getPhoto()));
 		}
 	}
-
 }
